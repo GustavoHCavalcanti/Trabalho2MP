@@ -61,5 +61,19 @@ TEST(ContaPalavrasTest, ContaPalavrasCaseInsensitive) {
     EXPECT_EQ(resultado["mundo"], 2);
 }
 
+/**
+ * @brief Teste de contagem em texto vazio.
+ * 
+ * Este teste verifica se a função `contarPalavras` retorna um mapa vazio 
+ * quando o texto de entrada é vazio.
+ */
+TEST(ContaPalavrasTest, ContaPalavrasVazia) {
+    std::string texto = "";
+    auto resultado = contarPalavras(texto);
+
+    // Verificar que o mapa está vazio
+    EXPECT_TRUE(resultado.empty());
+}
+
 
 
