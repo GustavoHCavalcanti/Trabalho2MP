@@ -6,9 +6,10 @@ TARGET_TEST = testa_conta_palavras  # Usando o mesmo nome para o programa de tes
 CC = gcc
 CXX = g++
 
+
 # Flags de compilação
-CFLAGS = -std=c99 -Wall -g  # Usando C99
-CXXFLAGS = -std=c++14 -Wall -g -I./googletest/include  # Diretório correto para o gtest
+CFLAGS = -std=c99 -Wall -g -fprofile-arcs -ftest-coverage  # Adicionando flags para gcov
+CXXFLAGS = -std=c++14 -Wall -g -fprofile-arcs -ftest-coverage -I./googletest/include  # Diretório correto para o gtest
 LDFLAGS = -L./googletest/lib -L/usr/lib -lgtest -lgtest_main -pthread  # Diretórios e flags para o gtest
 
 # Arquivos fonte e objeto
@@ -28,7 +29,7 @@ $(TARGET_MAIN): $(MAIN_OBJECTS)
 
 # Limpeza dos arquivos gerados
 clean:
-	rm -f *.o $(TARGET_MAIN) $(TARGET_TEST)
+	rm -f *.o $(TARGET_MAIN) $(TARGET_TEST) *.gcov
 
 # Testar com gtest
 test: $(TARGET_TEST)
@@ -42,7 +43,6 @@ cppcheck:
 	cppcheck --enable=warning --language=c .
 
 coverage: $(TARGET_MAIN)
-	./$(TARGET_MAIN)
-	gcov conta_palavras.cpp
-	gcov testa_conta_palavras.cpp
-
+	./$(TARGET_MAIN)  # Executa o programa
+	gcov conta_palavras.cpp  # Gera a cobertura para conta_palavras
+	gcov testa_conta_palavras.cpp  # Gera a cobertura para testa_conta_palavras
