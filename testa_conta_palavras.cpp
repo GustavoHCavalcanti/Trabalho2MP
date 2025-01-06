@@ -75,5 +75,20 @@ TEST(ContaPalavrasTest, ContaPalavrasVazia) {
     EXPECT_TRUE(resultado.empty());
 }
 
+/**
+ * @brief Teste de contagem de palavras com números.
+ * 
+ * Este teste verifica se a função `contarPalavras` lida corretamente com 
+ * palavras que contêm números. A palavra "ano2025" deve ser contada 1 vez.
+ */
+TEST(ContaPalavrasTest, ContaPalavrasComNumeros) {
+    std::string texto = "ano2025 ano2025";
+    auto resultado = contarPalavras(texto);
+
+    // Verificar a contagem da palavra com números
+    EXPECT_EQ(resultado["ano2025"], 2);
+}
+
+
 
 
