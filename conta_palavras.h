@@ -1,4 +1,4 @@
-#include "conta_palavras.h"
+#include "conta_palavras.c"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
