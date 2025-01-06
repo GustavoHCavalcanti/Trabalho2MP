@@ -1,0 +1,63 @@
+\hypertarget{conta__palavras_8hpp}{}\doxysection{conta\+\_\+palavras.\+hpp File Reference}
+\label{conta__palavras_8hpp}\index{conta\_palavras.hpp@{conta\_palavras.hpp}}
+
+
+Declaração da função para contar as palavras em um texto.  
+
+
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+Include dependency graph for conta\+\_\+palavras.\+hpp\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::map$<$ std\+::string, int $>$ \mbox{\hyperlink{conta__palavras_8hpp_a18cdec8999e6dc2f7e4db56432f6305a}{contar\+Palavras}} (const std\+::string \&texto)
+\begin{DoxyCompactList}\small\item\em Conta a ocorrência de palavras em um texto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declaração da função para contar as palavras em um texto. 
+
+Este arquivo contém a declaração da função {\ttfamily contar\+Palavras}, que é responsável por contar a frequência de ocorrência de cada palavra em um texto. Ele utiliza um mapa para armazenar as palavras e suas respectivas contagens. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{conta__palavras_8hpp_a18cdec8999e6dc2f7e4db56432f6305a}\label{conta__palavras_8hpp_a18cdec8999e6dc2f7e4db56432f6305a}} 
+\index{conta\_palavras.hpp@{conta\_palavras.hpp}!contarPalavras@{contarPalavras}}
+\index{contarPalavras@{contarPalavras}!conta\_palavras.hpp@{conta\_palavras.hpp}}
+\doxysubsubsection{\texorpdfstring{contarPalavras()}{contarPalavras()}}
+{\footnotesize\ttfamily std\+::map$<$std\+::string, int$>$ contar\+Palavras (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{texto }\end{DoxyParamCaption})}
+
+
+
+Conta a ocorrência de palavras em um texto. 
+
+A função {\ttfamily contar\+Palavras} recebe uma string contendo um texto e retorna um mapa onde as chaves são as palavras do texto e os valores são o número de vezes que cada palavra aparece. Caracteres não alfanuméricos são removidos das palavras e a contagem é feita de forma insensível a maiúsculas e minúsculas.
+
+
+\begin{DoxyParams}{Parameters}
+{\em texto} & A string que contém o texto a ser analisado.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um mapa de palavras (chaves) e suas contagens (valores).
+\end{DoxyReturn}
+Esta função recebe uma string contendo um texto e conta quantas vezes cada palavra aparece no texto. A contagem é realizada sem considerar diferenças entre maiúsculas e minúsculas. Além disso, caracteres não alfanuméricos (como pontuação) são removidos antes de realizar a contagem.
+
+
+\begin{DoxyParams}{Parameters}
+{\em texto} & O texto a ser analisado.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um mapa onde as chaves são as palavras do texto e os valores são o número de ocorrências de cada palavra. 
+\end{DoxyReturn}
+$<$ Mapa para armazenar as palavras e suas contagens
+
+$<$ String\+Stream para dividir o texto em palavras
+
+$<$ Variável para armazenar a palavra atual
+
+$<$ Retorna o mapa com a contagem das palavras
