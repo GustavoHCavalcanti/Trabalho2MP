@@ -1,31 +1,48 @@
-# Definir o compilador C++
+# Nome dos executáveis
+TARGET_MAIN = testa_conta_palavras
+TARGET_TEST = testa_conta_palavras  # Usando o mesmo nome para o programa de teste
+
+# Compiladores
+CC = gcc
 CXX = g++
-CXXFLAGS = -std=c++14 -g -Wall -I./googletest/include
-LDFLAGS = -lgtest -lgtest_main -pthread  # Flags para linkar as bibliotecas do Google Test
 
-# Diretórios
-INCDIR = ./googletest/include  # Diretório de include do Google Test
-LIBDIR = ./googletest/lib      # Diretório de bibliotecas do Google Test
+# Flags de compilação
+CFLAGS = -std=c99 -Wall -g  # Usando C99
+CXXFLAGS = -std=c++14 -Wall -g -I./googletest/include  # Diretório correto para o gtest
+LDFLAGS = -L./googletest/lib -L/usr/lib -lgtest -lgtest_main -pthread  # Diretórios e flags para o gtest
 
-# Nome do arquivo de saída
-TARGET = check_gtest
+# Arquivos fonte e objeto
+MAIN_SOURCES = conta_palavras.cpp testa_conta_palavras.cpp  # Arquivos de código fonte
+MAIN_OBJECTS = conta_palavras.o testa_conta_palavras.o    # Arquivos objeto
 
-# Objetos
-OBJ = check_gtest.o
+# Regras padrão
+all: $(TARGET_MAIN) $(TARGET_TEST)
 
-# Regra principal
-all: $(TARGET)
+# Compilar e executar o programa principal
+$(TARGET_MAIN): $(MAIN_OBJECTS)
+	$(CXX) $(CXXFLAGS) $(MAIN_OBJECTS) -o $(TARGET_MAIN) $(LDFLAGS)  # Linkando com gtest
 
-# Regra para compilar o programa de teste
-$(TARGET): $(OBJ)
-	$(CXX) -o $(TARGET) $(OBJ) $(LDFLAGS)
-
-# Regra para compilar o arquivo .cpp de teste
-check_gtest.o: check_gtest.cpp
-	$(CXX) $(CXXFLAGS) -I$(INCDIR) -c check_gtest.cpp -o check_gtest.o
+# Compilar arquivos objeto principais
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Limpeza dos arquivos gerados
 clean:
-	rm -f $(OBJ) $(TARGET)
+	rm -f *.o $(TARGET_MAIN) $(TARGET_TEST)
 
+# Testar com gtest
+test: $(TARGET_TEST)
+	./$(TARGET_TEST)
+
+# Regras adicionais
+valgrind:
+	valgrind ./$(TARGET_MAIN)
+
+cppcheck:
+	cppcheck --enable=warning --language=c .
+
+coverage: $(TARGET_MAIN)
+	./$(TARGET_MAIN)
+	gcov conta_palavras.cpp
+	gcov testa_conta_palavras.cpp
 
