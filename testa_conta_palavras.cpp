@@ -89,6 +89,22 @@ TEST(ContaPalavrasTest, ContaPalavrasComNumeros) {
     EXPECT_EQ(resultado["ano2025"], 2);
 }
 
+/**
+ * @brief Teste de contagem de palavras com múltiplas ocorrências e pontuação.
+ * 
+ * Este teste verifica se a função `contarPalavras` consegue contar corretamente 
+ * palavras com múltiplas ocorrências e pontuação misturada, como vírgulas e pontos.
+ * A palavra "olá" deve ser contada 3 vezes e a palavra "mundo" deve ser contada 2 vezes.
+ */
+TEST(ContaPalavrasTest, ContaPalavrasMultiplaComPontuacao) {
+    std::string texto = "olá, olá! mundo. mundo";
+    auto resultado = contarPalavras(texto);
+
+    // Verificar a contagem das palavras com múltiplas ocorrências
+    EXPECT_EQ(resultado["olá"], 3);
+    EXPECT_EQ(resultado["mundo"], 2);
+}
+
 
 
 

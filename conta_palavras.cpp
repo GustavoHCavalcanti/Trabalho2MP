@@ -5,6 +5,44 @@
 #include <algorithm>
 #include <map>
 #include <string>
+#include <locale>
+#include <unordered_map>
+
+/**
+ * @brief Remove acentos de uma string.
+ * 
+ * Esta função converte caracteres acentuados (como "á", "é", etc.) para seus
+ * equivalentes não acentuados (como "a", "e", etc.), utilizando um mapa para
+ * realizar a substituição.
+ * 
+ * @param palavra A palavra a ser normalizada.
+ * @return A palavra sem acentos.
+ */
+std::string removerAcentos(const std::string& palavra) {
+    // Mapa de caracteres com acento para os respectivos sem acento
+    std::unordered_map<char, char> acentos = {
+        {'á', 'a'}, {'à', 'a'}, {'ã', 'a'}, {'â', 'a'}, {'ä', 'a'},
+        {'é', 'e'}, {'è', 'e'}, {'ê', 'e'}, {'ë', 'e'},
+        {'í', 'i'}, {'ì', 'i'}, {'î', 'i'}, {'ï', 'i'},
+        {'ó', 'o'}, {'ò', 'o'}, {'õ', 'o'}, {'ô', 'o'}, {'ö', 'o'},
+        {'ú', 'u'}, {'ù', 'u'}, {'û', 'u'}, {'ü', 'u'},
+        {'ç', 'c'}, {'Á', 'A'}, {'À', 'A'}, {'Ã', 'A'}, {'Â', 'A'}, {'Ä', 'A'},
+        {'É', 'E'}, {'È', 'E'}, {'Ê', 'E'}, {'Ë', 'E'},
+        {'Í', 'I'}, {'Ì', 'I'}, {'Î', 'I'}, {'Ï', 'I'},
+        {'Ó', 'O'}, {'Ò', 'O'}, {'Õ', 'O'}, {'Ô', 'O'}, {'Ö', 'O'},
+        {'Ú', 'U'}, {'Ù', 'U'}, {'Û', 'U'}, {'Ü', 'U'},
+        {'Ç', 'C'}
+    };
+
+    std::string resultado = palavra;
+    for (char& c : resultado) {
+        auto it = acentos.find(c);
+        if (it != acentos.end()) {
+            c = it->second;  // Substitui o caractere com acento pelo sem acento
+        }
+    }
+    return resultado;
+}
 
 /**
  * @brief Conta a ocorrência de palavras em um texto.
@@ -26,9 +64,12 @@ std::map<std::string, int> contarPalavras(const std::string& texto) {
 
     // Loop para processar cada palavra do texto
     while (ss >> palavra) {
-        // Remove caracteres não alfanuméricos (pontuação)
-        palavra.erase(remove_if(palavra.begin(), palavra.end(),
-            [](char c) { return !std::isalnum(c); }), palavra.end());
+        // Remove caracteres não alfanuméricos (pontuação) que não sejam letras ou números
+        palavra.erase(std::remove_if(palavra.begin(), palavra.end(),
+            [](char c) { return !std::isalnum(c) && c != '-'; }), palavra.end());
+
+        // Remove acentos das palavras
+        palavra = removerAcentos(palavra);
 
         // Converte a palavra para minúscula para garantir que a contagem não seja case-sensitive
         std::transform(palavra.begin(), palavra.end(), palavra.begin(), ::tolower);
@@ -39,3 +80,6 @@ std::map<std::string, int> contarPalavras(const std::string& texto) {
 
     return contagem;  ///< Retorna o mapa com a contagem das palavras
 }
+
+
+
