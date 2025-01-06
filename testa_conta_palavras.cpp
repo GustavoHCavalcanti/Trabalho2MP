@@ -3,8 +3,23 @@
 #include "conta_palavras.hpp"
 #include <string>
 
+/**
+ * @file testa_conta_palavras.cpp
+ * 
+ * @brief Testes unitários para a função contarPalavras.
+ * 
+ * Este arquivo contém testes para a função `contarPalavras`, que conta a ocorrência
+ * de cada palavra em um texto fornecido. A função deve lidar corretamente com texto
+ * simples, pontuação e diferenças entre maiúsculas e minúsculas.
+ */
 
-// Teste básico para verificar a contagem de palavras
+/**
+ * @brief Teste de contagem de palavras simples.
+ * 
+ * Este teste verifica se a função `contarPalavras` consegue contar corretamente 
+ * as palavras em um texto simples. A palavra "ola" deve ser contada 2 vezes e 
+ * a palavra "mundo" deve ser contada 1 vez.
+ */
 TEST(ContaPalavrasTest, ContaPalavrasSimples) {
     std::string texto = "ola ola mundo";
     auto resultado = contarPalavras(texto);
@@ -14,7 +29,13 @@ TEST(ContaPalavrasTest, ContaPalavrasSimples) {
     EXPECT_EQ(resultado["mundo"], 1);
 }
 
-// Teste de palavras com pontuação
+/**
+ * @brief Teste de contagem de palavras com pontuação.
+ * 
+ * Este teste verifica se a função `contarPalavras` consegue contar as palavras 
+ * corretamente, ignorando pontuação (como vírgulas, pontos de exclamação e pontos).
+ * A palavra "ola" deve ser contada 2 vezes e a palavra "mundo" deve ser contada 1 vez.
+ */
 TEST(ContaPalavrasTest, ContaPalavrasComPontuacao) {
     std::string texto = "ola, ola! mundo.";
     auto resultado = contarPalavras(texto);
@@ -24,7 +45,13 @@ TEST(ContaPalavrasTest, ContaPalavrasComPontuacao) {
     EXPECT_EQ(resultado["mundo"], 1);
 }
 
-// Teste de palavras com diferentes maiúsculas e minúsculas
+/**
+ * @brief Teste de contagem de palavras insensível a maiúsculas.
+ * 
+ * Este teste verifica se a função `contarPalavras` não faz distinção entre 
+ * maiúsculas e minúsculas. Ou seja, "Ola" e "ola" devem ser tratadas como a 
+ * mesma palavra, e "Mundo" e "mundo" também devem ser contadas como uma só.
+ */
 TEST(ContaPalavrasTest, ContaPalavrasCaseInsensitive) {
     std::string texto = "Ola ola Mundo mundo";
     auto resultado = contarPalavras(texto);
@@ -33,5 +60,6 @@ TEST(ContaPalavrasTest, ContaPalavrasCaseInsensitive) {
     EXPECT_EQ(resultado["ola"], 2);
     EXPECT_EQ(resultado["mundo"], 2);
 }
+
 
 

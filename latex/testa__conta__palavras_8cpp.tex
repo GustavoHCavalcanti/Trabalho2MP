@@ -1,0 +1,60 @@
+\hypertarget{testa__conta__palavras_8cpp}{}\doxysection{testa\+\_\+conta\+\_\+palavras.\+cpp File Reference}
+\label{testa__conta__palavras_8cpp}\index{testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}}
+
+
+Testes unitários para a função contar\+Palavras.  
+
+
+{\ttfamily \#include $<$gtest/gtest.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}conta\+\_\+palavras.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$string$>$}\newline
+Include dependency graph for testa\+\_\+conta\+\_\+palavras.\+cpp\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{testa__conta__palavras_8cpp_acf46509a9db9de11000a05c9db144f52}{T\+E\+ST}} (Conta\+Palavras\+Test, Conta\+Palavras\+Simples)
+\begin{DoxyCompactList}\small\item\em Teste de contagem de palavras simples. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{testa__conta__palavras_8cpp_a211f442e898bd78d6849b12adeb1dc57}{T\+E\+ST}} (Conta\+Palavras\+Test, Conta\+Palavras\+Com\+Pontuacao)
+\begin{DoxyCompactList}\small\item\em Teste de contagem de palavras com pontuação. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{testa__conta__palavras_8cpp_a0a6599cd9d3436156ee62a56f4aa4b4e}{T\+E\+ST}} (Conta\+Palavras\+Test, Conta\+Palavras\+Case\+Insensitive)
+\begin{DoxyCompactList}\small\item\em Teste de contagem de palavras insensível a maiúsculas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Testes unitários para a função contar\+Palavras. 
+
+Este arquivo contém testes para a função {\ttfamily contar\+Palavras}, que conta a ocorrência de cada palavra em um texto fornecido. A função deve lidar corretamente com texto simples, pontuação e diferenças entre maiúsculas e minúsculas. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{testa__conta__palavras_8cpp_a0a6599cd9d3436156ee62a56f4aa4b4e}\label{testa__conta__palavras_8cpp_a0a6599cd9d3436156ee62a56f4aa4b4e}} 
+\index{testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}!TEST@{TEST}}
+\index{TEST@{TEST}!testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}}
+\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily T\+E\+ST (\begin{DoxyParamCaption}\item[{Conta\+Palavras\+Test}]{,  }\item[{Conta\+Palavras\+Case\+Insensitive}]{ }\end{DoxyParamCaption})}
+
+
+
+Teste de contagem de palavras insensível a maiúsculas. 
+
+Este teste verifica se a função {\ttfamily contar\+Palavras} não faz distinção entre maiúsculas e minúsculas. Ou seja, \char`\"{}\+Ola\char`\"{} e \char`\"{}ola\char`\"{} devem ser tratadas como a mesma palavra, e \char`\"{}\+Mundo\char`\"{} e \char`\"{}mundo\char`\"{} também devem ser contadas como uma só. \mbox{\Hypertarget{testa__conta__palavras_8cpp_a211f442e898bd78d6849b12adeb1dc57}\label{testa__conta__palavras_8cpp_a211f442e898bd78d6849b12adeb1dc57}} 
+\index{testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}!TEST@{TEST}}
+\index{TEST@{TEST}!testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}}
+\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily T\+E\+ST (\begin{DoxyParamCaption}\item[{Conta\+Palavras\+Test}]{,  }\item[{Conta\+Palavras\+Com\+Pontuacao}]{ }\end{DoxyParamCaption})}
+
+
+
+Teste de contagem de palavras com pontuação. 
+
+Este teste verifica se a função {\ttfamily contar\+Palavras} consegue contar as palavras corretamente, ignorando pontuação (como vírgulas, pontos de exclamação e pontos). A palavra \char`\"{}ola\char`\"{} deve ser contada 2 vezes e a palavra \char`\"{}mundo\char`\"{} deve ser contada 1 vez. \mbox{\Hypertarget{testa__conta__palavras_8cpp_acf46509a9db9de11000a05c9db144f52}\label{testa__conta__palavras_8cpp_acf46509a9db9de11000a05c9db144f52}} 
+\index{testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}!TEST@{TEST}}
+\index{TEST@{TEST}!testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}}
+\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily T\+E\+ST (\begin{DoxyParamCaption}\item[{Conta\+Palavras\+Test}]{,  }\item[{Conta\+Palavras\+Simples}]{ }\end{DoxyParamCaption})}
+
+
+
+Teste de contagem de palavras simples. 
+
+Este teste verifica se a função {\ttfamily contar\+Palavras} consegue contar corretamente as palavras em um texto simples. A palavra \char`\"{}ola\char`\"{} deve ser contada 2 vezes e a palavra \char`\"{}mundo\char`\"{} deve ser contada 1 vez. 

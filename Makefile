@@ -18,8 +18,11 @@ MAIN_OBJECTS = conta_palavras.o testa_conta_palavras.o    # Arquivos objeto
 # Diretório para armazenar os relatórios de cobertura
 COVERAGE_DIR = coverage_reports
 
+# Diretório para a documentação do Doxygen
+DOXYGEN_DIR = doxygen_docs
+
 # Regras padrão
-all: $(TARGET_MAIN) $(TARGET_TEST)
+all: $(TARGET_MAIN) $(TARGET_TEST) doc
 
 # Compilar e executar o programa principal
 $(TARGET_MAIN): $(MAIN_OBJECTS)
@@ -33,6 +36,7 @@ $(TARGET_MAIN): $(MAIN_OBJECTS)
 clean:
 	rm -f *.o $(TARGET_MAIN) $(TARGET_TEST) *.gcov
 	rm -rf $(COVERAGE_DIR)/*.gcda $(COVERAGE_DIR)/*.gcno
+	rm -rf $(DOXYGEN_DIR)
 
 # Testar com gtest
 test: $(TARGET_TEST)
@@ -52,3 +56,10 @@ coverage: $(TARGET_MAIN)
 	mv *.gcno $(COVERAGE_DIR)  # Move os arquivos .gcno para o diretório de cobertura
 	gcov $(COVERAGE_DIR)/conta_palavras.cpp  # Gera a cobertura para conta_palavras
 	gcov $(COVERAGE_DIR)/testa_conta_palavras.cpp  # Gera a cobertura para testa_conta_palavras
+
+# Documentação com Doxygen
+doc:
+	# Cria o diretório de documentação, se não existir
+	mkdir -p $(DOXYGEN_DIR)
+	# Executa o Doxygen para gerar a documentação
+	doxygen Doxyfile
