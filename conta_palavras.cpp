@@ -1,7 +1,11 @@
+// Copyright 2025 Gustavo
 #include "conta_palavras.hpp"
 #include <sstream>
 #include <cctype>
 #include <algorithm>
+#include <map>
+#include <string>
+
 
 std::map<std::string, int> contarPalavras(const std::string& texto) {
     std::map<std::string, int> contagem;
@@ -10,7 +14,7 @@ std::map<std::string, int> contarPalavras(const std::string& texto) {
 
     while (ss >> palavra) {
         // Remove caracteres não alfanuméricos (pontuação)
-        palavra.erase(remove_if(palavra.begin(), palavra.end(), 
+        palavra.erase(remove_if(palavra.begin(), palavra.end(),
             [](char c) { return !std::isalnum(c); }), palavra.end());
 
         // Converte a palavra para minúscula para garantir que a contagem não seja case-sensitive

@@ -1,5 +1,8 @@
+// Copyright 2025 Gustavo
 #include <gtest/gtest.h>
 #include "conta_palavras.hpp"
+#include <string>
+
 
 // Teste básico para verificar a contagem de palavras
 TEST(ContaPalavrasTest, ContaPalavrasSimples) {
