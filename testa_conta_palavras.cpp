@@ -134,6 +134,43 @@ TEST(ContaPalavrasTest, ContaPalavrasComAlfanumericos) {
     EXPECT_EQ(resultado["123abc"], 1);
 }
 
+/**
+ * @brief Testa palavras compostas com hífen.
+ * 
+ * Este teste verifica se a função contarPalavras processa corretamente palavras compostas
+ * que contêm hífen, como "meia-noite" ou "bem-vindo".
+ */
+TEST(ContaPalavrasTest, PalavrasComHifen) {
+    std::string texto = "meia-noite e um horario comum. bem-vindo ao ano 2025.";
+    auto resultado = contarPalavras(texto);
+    EXPECT_EQ(resultado["meia-noite"], 1);
+    EXPECT_EQ(resultado["bem-vindo"], 1);
+    EXPECT_EQ(resultado["um"], 1);
+    EXPECT_EQ(resultado["e"], 1);
+    EXPECT_EQ(resultado["horario"], 1);
+    EXPECT_EQ(resultado["comum"], 1);
+    EXPECT_EQ(resultado["ao"], 1);
+    EXPECT_EQ(resultado["ano"], 1);
+    EXPECT_EQ(resultado["2025"], 1);
+}
+
+/**
+ * @brief Testa palavras com pontuação.
+ * 
+ * Este teste verifica se a função contarPalavras processa corretamente palavras com
+ * pontuação no final, como "com", "pontuação!" e "isso?".
+ */
+TEST(ContaPalavrasTest, PalavrasComPontos) {
+    std::string texto = "com Vinicius pontos! isso? mas. legal!! Vinicius Junior,,";
+    auto resultado = contarPalavras(texto);
+    EXPECT_EQ(resultado["com"], 1);
+    EXPECT_EQ(resultado["pontos"], 1);
+    EXPECT_EQ(resultado["isso"], 1);
+    EXPECT_EQ(resultado["mas"], 1);
+    EXPECT_EQ(resultado["legal"], 1);
+    EXPECT_EQ(resultado["vinicius"], 2);
+    EXPECT_EQ(resultado["junior"], 1);
+}
 
 
 
