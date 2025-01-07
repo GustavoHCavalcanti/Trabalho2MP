@@ -134,6 +134,24 @@ TEST(ContaPalavrasTest, ContaPalavrasComAlfanumericos) {
     EXPECT_EQ(resultado["123abc"], 1);
 }
 
+/**
+ * @brief Testa palavras compostas com hífen.
+ * 
+ * Este teste verifica se a função contarPalavras processa corretamente palavras compostas
+ * que contêm hífen, como "meia-noite" ou "bem-vindo".
+ */
+TEST(ContaPalavrasTest, PalavrasComHifen) {
+    std::string texto = "meia-noite é um horário comum. bem-vindo ao ano 2025.";
+    auto resultado = contarPalavras(texto);
+    EXPECT_EQ(resultado["meia-noite"], 1);
+    EXPECT_EQ(resultado["bem-vindo"], 1);
+    EXPECT_EQ(resultado["um"], 1);
+    EXPECT_EQ(resultado["comum"], 1);
+    EXPECT_EQ(resultado["ao"], 1);
+    EXPECT_EQ(resultado["ano"], 1);
+    EXPECT_EQ(resultado["2025"], 1);
+}
+
 
 
 
