@@ -119,6 +119,20 @@ TEST(ContaPalavrasTest, ContaPalavrasComHifen) {
     EXPECT_EQ(resultado["bom-dia"], 1);
 }
 
+/**
+ * @brief Testa se a função lida corretamente com palavras alfanuméricas.
+ * 
+ * Este teste verifica se palavras que contêm combinações de letras e números
+ * são processadas adequadamente.
+ */
+TEST(ContaPalavrasTest, ContaPalavrasComAlfanumericos) {
+    std::string texto = "abc123 123abc abc123";
+    auto resultado = contarPalavras(texto);
+
+    // "abc123" deve aparecer 2 vezes e "123abc" deve aparecer 1 vez
+    EXPECT_EQ(resultado["abc123"], 2);
+    EXPECT_EQ(resultado["123abc"], 1);
+}
 
 
 
