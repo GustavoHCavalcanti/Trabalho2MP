@@ -152,6 +152,23 @@ TEST(ContaPalavrasTest, PalavrasComHifen) {
     EXPECT_EQ(resultado["2025"], 1);
 }
 
+/**
+ * @brief Testa palavras com pontuação.
+ * 
+ * Este teste verifica se a função contarPalavras processa corretamente palavras com
+ * pontuação no final, como "com", "pontuação!" e "isso?".
+ */
+TEST(ContaPalavrasTest, PalavrasComPontos) {
+    std::string texto = "com Vinicius pontos! isso? mas. legal!! Vinicius Junior,,";
+    auto resultado = contarPalavras(texto);
+    EXPECT_EQ(resultado["com"], 1);
+    EXPECT_EQ(resultado["pontos"], 1);
+    EXPECT_EQ(resultado["isso"], 1);
+    EXPECT_EQ(resultado["mas"], 1);
+    EXPECT_EQ(resultado["legal"], 1);
+    EXPECT_EQ(resultado["vinicius"], 2);
+    EXPECT_EQ(resultado["junior"], 1);
+}
 
 
 
