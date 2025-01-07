@@ -188,6 +188,21 @@ TEST(ContaPalavrasTest, PontuacaoComHifen) {
     EXPECT_EQ(resultado["voce"], 1);         // Palavra simples
 }
 
+/**
+ * @brief Testa palavras compostas com hífen e pontuação.
+ * 
+ * Este teste verifica se as palavras compostas com hífen são corretamente reconhecidas
+ * e se a pontuação é removida adequadamente, sem afetar as palavras compostas.
+ */
+TEST(ContaPalavrasTest, PalavrasComHifenEPontuacao) {
+    std::string texto = "meia-noite, bem-vindo ao mundo!";
+    auto resultado = contarPalavras(texto);
+    
+    EXPECT_EQ(resultado["meia-noite"], 1);  // Palavra composta com hífen
+    EXPECT_EQ(resultado["bem-vindo"], 1);   // Palavra composta com hífen
+    EXPECT_EQ(resultado["ao"], 1);          // Palavra simples
+    EXPECT_EQ(resultado["mundo"], 1);       // Palavra simples
+}
 
 
 
