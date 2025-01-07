@@ -1,41 +1,53 @@
-// Copyright 2025 Gustavo
 #include "conta_palavras.hpp"
 #include <sstream>
 #include <cctype>
 #include <algorithm>
 #include <map>
 #include <string>
+#include <locale>
+#include <codecvt>
 
 /**
- * @brief Conta a ocorrência de palavras em um texto.
+ * @brief Remove acentos de uma string usando std::wstring e std::locale.
  * 
- * Esta função recebe uma string contendo um texto e conta quantas vezes 
- * cada palavra aparece no texto. A contagem é realizada sem considerar 
- * diferenças entre maiúsculas e minúsculas. Além disso, caracteres não 
- * alfanuméricos (como pontuação) são removidos antes de realizar a contagem.
- * 
- * @param texto O texto a ser analisado.
- * 
- * @return Um mapa onde as chaves são as palavras do texto e os valores 
- *         são o número de ocorrências de cada palavra.
+ * @param palavra A palavra a ser normalizada.
+ * @return A palavra sem acentos.
  */
-std::map<std::string, int> contarPalavras(const std::string& texto) {
-    std::map<std::string, int> contagem;  ///< Mapa para armazenar as palavras e suas contagens
-    std::stringstream ss(texto);  ///< StringStream para dividir o texto em palavras
-    std::string palavra;  ///< Variável para armazenar a palavra atual
+std::string removerAcentos(const std::string& palavra) {
+    std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t> converter;
+    std::wstring wide_palavra = converter.from_bytes(palavra);
+    std::wstring resultado;
 
-    // Loop para processar cada palavra do texto
-    while (ss >> palavra) {
-        // Remove caracteres não alfanuméricos (pontuação)
-        palavra.erase(remove_if(palavra.begin(), palavra.end(),
-            [](char c) { return !std::isalnum(c); }), palavra.end());
-
-        // Converte a palavra para minúscula para garantir que a contagem não seja case-sensitive
-        std::transform(palavra.begin(), palavra.end(), palavra.begin(), ::tolower);
-
-        // Atualiza a contagem da palavra
-        contagem[palavra]++;
+    std::locale loc("en_US.UTF-8");
+    for (wchar_t c : wide_palavra) {
+        if (std::isalnum(c, loc)) { // Preserva caracteres alfanuméricos (letras e números)
+            resultado += c;
+        }
     }
 
-    return contagem;  ///< Retorna o mapa com a contagem das palavras
+    return converter.to_bytes(resultado);
 }
+
+std::map<std::string, int> contarPalavras(const std::string& texto) {
+    std::map<std::string, int> contagem;
+    std::stringstream ss(texto);
+    std::string palavra;
+
+    while (ss >> palavra) {
+        // Remove pontuações no início e no final da palavra, mas preserva palavras alfanuméricas
+        palavra.erase(std::remove_if(palavra.begin(), palavra.end(),
+            [](char c) { return !std::isalnum(c) && !std::isspace(c); }), palavra.end());
+
+        palavra = removerAcentos(palavra);
+        std::transform(palavra.begin(), palavra.end(), palavra.begin(), ::tolower);
+        if (!palavra.empty()) { // Adiciona ao mapa somente se não estiver vazia
+            contagem[palavra]++;
+        }
+    }
+
+    return contagem;
+}
+
+
+
+
