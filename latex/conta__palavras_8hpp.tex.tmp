@@ -42,22 +42,5 @@ A função {\ttfamily contar\+Palavras} recebe uma string contendo um texto e re
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Um mapa de palavras (chaves) e suas contagens (valores).
+Um mapa de palavras (chaves) e suas contagens (valores). 
 \end{DoxyReturn}
-Esta função recebe uma string contendo um texto e conta quantas vezes cada palavra aparece no texto. A contagem é realizada sem considerar diferenças entre maiúsculas e minúsculas. Além disso, caracteres não alfanuméricos (como pontuação) são removidos antes de realizar a contagem.
-
-
-\begin{DoxyParams}{Parameters}
-{\em texto} & O texto a ser analisado.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-Um mapa onde as chaves são as palavras do texto e os valores são o número de ocorrências de cada palavra. 
-\end{DoxyReturn}
-$<$ Mapa para armazenar as palavras e suas contagens
-
-$<$ String\+Stream para dividir o texto em palavras
-
-$<$ Variável para armazenar a palavra atual
-
-$<$ Retorna o mapa com a contagem das palavras

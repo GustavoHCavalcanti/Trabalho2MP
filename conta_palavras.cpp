@@ -20,7 +20,7 @@ std::string removerAcentos(const std::string& palavra) {
 
     std::locale loc("en_US.UTF-8");
     for (wchar_t c : wide_palavra) {
-        if (std::isalnum(c, loc)) { // Preserva caracteres alfanuméricos (letras e números)
+        if (std::isalnum(c, loc) || c == L'-') { // Preserva caracteres alfanuméricos e hífens
             resultado += c;
         }
     }
@@ -34,19 +34,23 @@ std::map<std::string, int> contarPalavras(const std::string& texto) {
     std::string palavra;
 
     while (ss >> palavra) {
-        // Remove pontuações no início e no final da palavra, mas preserva palavras alfanuméricas
-        palavra.erase(std::remove_if(palavra.begin(), palavra.end(),
-            [](char c) { return !std::isalnum(c) && !std::isspace(c); }), palavra.end());
+        // Remove pontuações no início e no final da palavra, preservando hífens internos
+        auto inicio = palavra.begin();
+        auto fim = palavra.end();
+        while (inicio != fim && !std::isalnum(*inicio) && *inicio != '-') ++inicio;
+        while (fim != inicio && !std::isalnum(*(fim - 1)) && *(fim - 1) != '-') --fim;
+        palavra = std::string(inicio, fim);
 
         palavra = removerAcentos(palavra);
         std::transform(palavra.begin(), palavra.end(), palavra.begin(), ::tolower);
-        if (!palavra.empty()) { // Adiciona ao mapa somente se não estiver vazia
+        if (!palavra.empty() && palavra.find("--") == std::string::npos) { // Adiciona ao mapa se válido
             contagem[palavra]++;
         }
     }
 
     return contagem;
 }
+
 
 
 
