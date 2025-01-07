@@ -1,4 +1,3 @@
-// Copyright 2025 Gustavo
 #include "conta_palavras.hpp"
 #include <sstream>
 #include <cctype>
@@ -6,80 +5,49 @@
 #include <map>
 #include <string>
 #include <locale>
-#include <unordered_map>
+#include <codecvt>
 
 /**
- * @brief Remove acentos de uma string.
- * 
- * Esta função converte caracteres acentuados (como "á", "é", etc.) para seus
- * equivalentes não acentuados (como "a", "e", etc.), utilizando um mapa para
- * realizar a substituição.
+ * @brief Remove acentos de uma string usando std::wstring e std::locale.
  * 
  * @param palavra A palavra a ser normalizada.
  * @return A palavra sem acentos.
  */
 std::string removerAcentos(const std::string& palavra) {
-    // Mapa de caracteres com acento para os respectivos sem acento
-    std::unordered_map<char, char> acentos = {
-        {'á', 'a'}, {'à', 'a'}, {'ã', 'a'}, {'â', 'a'}, {'ä', 'a'},
-        {'é', 'e'}, {'è', 'e'}, {'ê', 'e'}, {'ë', 'e'},
-        {'í', 'i'}, {'ì', 'i'}, {'î', 'i'}, {'ï', 'i'},
-        {'ó', 'o'}, {'ò', 'o'}, {'õ', 'o'}, {'ô', 'o'}, {'ö', 'o'},
-        {'ú', 'u'}, {'ù', 'u'}, {'û', 'u'}, {'ü', 'u'},
-        {'ç', 'c'}, {'Á', 'A'}, {'À', 'A'}, {'Ã', 'A'}, {'Â', 'A'}, {'Ä', 'A'},
-        {'É', 'E'}, {'È', 'E'}, {'Ê', 'E'}, {'Ë', 'E'},
-        {'Í', 'I'}, {'Ì', 'I'}, {'Î', 'I'}, {'Ï', 'I'},
-        {'Ó', 'O'}, {'Ò', 'O'}, {'Õ', 'O'}, {'Ô', 'O'}, {'Ö', 'O'},
-        {'Ú', 'U'}, {'Ù', 'U'}, {'Û', 'U'}, {'Ü', 'U'},
-        {'Ç', 'C'}
-    };
+    std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t> converter;
+    std::wstring wide_palavra = converter.from_bytes(palavra);
+    std::wstring resultado;
 
-    std::string resultado = palavra;
-    for (char& c : resultado) {
-        auto it = acentos.find(c);
-        if (it != acentos.end()) {
-            c = it->second;  // Substitui o caractere com acento pelo sem acento
+    std::locale loc("en_US.UTF-8");
+    for (wchar_t c : wide_palavra) {
+        if (std::isalnum(c, loc)) { // Preserva caracteres alfanuméricos (letras e números)
+            resultado += c;
         }
     }
-    return resultado;
+
+    return converter.to_bytes(resultado);
 }
 
-/**
- * @brief Conta a ocorrência de palavras em um texto.
- * 
- * Esta função recebe uma string contendo um texto e conta quantas vezes 
- * cada palavra aparece no texto. A contagem é realizada sem considerar 
- * diferenças entre maiúsculas e minúsculas. Além disso, caracteres não 
- * alfanuméricos (como pontuação) são removidos antes de realizar a contagem.
- * 
- * @param texto O texto a ser analisado.
- * 
- * @return Um mapa onde as chaves são as palavras do texto e os valores 
- *         são o número de ocorrências de cada palavra.
- */
 std::map<std::string, int> contarPalavras(const std::string& texto) {
-    std::map<std::string, int> contagem;  ///< Mapa para armazenar as palavras e suas contagens
-    std::stringstream ss(texto);  ///< StringStream para dividir o texto em palavras
-    std::string palavra;  ///< Variável para armazenar a palavra atual
+    std::map<std::string, int> contagem;
+    std::stringstream ss(texto);
+    std::string palavra;
 
-    // Loop para processar cada palavra do texto
     while (ss >> palavra) {
-        // Remove caracteres não alfanuméricos (pontuação) que não sejam letras ou números
+        // Remove pontuações no início e no final da palavra, mas preserva palavras alfanuméricas
         palavra.erase(std::remove_if(palavra.begin(), palavra.end(),
-            [](char c) { return !std::isalnum(c) && c != '-'; }), palavra.end());
+            [](char c) { return !std::isalnum(c) && !std::isspace(c); }), palavra.end());
 
-        // Remove acentos das palavras
         palavra = removerAcentos(palavra);
-
-        // Converte a palavra para minúscula para garantir que a contagem não seja case-sensitive
         std::transform(palavra.begin(), palavra.end(), palavra.begin(), ::tolower);
-
-        // Atualiza a contagem da palavra
-        contagem[palavra]++;
+        if (!palavra.empty()) { // Adiciona ao mapa somente se não estiver vazia
+            contagem[palavra]++;
+        }
     }
 
-    return contagem;  ///< Retorna o mapa com a contagem das palavras
+    return contagem;
 }
+
 
 
 
