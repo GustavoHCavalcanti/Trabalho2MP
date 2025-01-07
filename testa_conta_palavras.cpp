@@ -172,6 +172,23 @@ TEST(ContaPalavrasTest, PalavrasComPontos) {
     EXPECT_EQ(resultado["junior"], 1);
 }
 
+/**
+ * @brief Testa a remoção de pontuação ao redor de palavras compostas com hífen.
+ * 
+ * Este teste verifica se a pontuação ao redor de palavras compostas com hífen é
+ * corretamente removida, e se as palavras são contadas sem alterações indesejadas.
+ */
+TEST(ContaPalavrasTest, PontuacaoComHifen) {
+    std::string texto = "ola, boa-tarde! como-vai voce?";
+    auto resultado = contarPalavras(texto);
+    
+    EXPECT_EQ(resultado["ola"], 1);          // Palavra simples
+    EXPECT_EQ(resultado["boa-tarde"], 1);    // Palavra composta com hífen
+    EXPECT_EQ(resultado["como-vai"], 1);     // Palavra composta com hífen
+    EXPECT_EQ(resultado["voce"], 1);         // Palavra simples
+}
+
+
 
 
 
