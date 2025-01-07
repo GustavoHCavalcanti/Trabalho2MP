@@ -1,0 +1,460 @@
+        -:    0:Source:testa_conta_palavras.cpp
+        -:    0:Graph:coverage_reports/testa_conta_palavras.gcno
+        -:    0:Data:coverage_reports/testa_conta_palavras.gcda
+        -:    0:Runs:1
+        -:    1:// Copyright 2025 Gustavo
+        -:    2:#include <gtest/gtest.h>
+        -:    3:#include "conta_palavras.hpp"
+        -:    4:#include <string>
+        -:    5:
+        -:    6:/**
+        -:    7: * @file testa_conta_palavras.cpp
+        -:    8: * 
+        -:    9: * @brief Testes unitários para a função contarPalavras.
+        -:   10: * 
+        -:   11: * Este arquivo contém testes para a função `contarPalavras`, que conta a ocorrência
+        -:   12: * de cada palavra em um texto fornecido. A função deve lidar corretamente com texto
+        -:   13: * simples, pontuação e diferenças entre maiúsculas e minúsculas.
+        -:   14: */
+        -:   15:
+        -:   16:/**
+        -:   17: * @brief Teste de contagem de palavras simples.
+        -:   18: * 
+        -:   19: * Este teste verifica se a função `contarPalavras` consegue contar corretamente 
+        -:   20: * as palavras em um texto simples. A palavra "ola" deve ser contada 2 vezes e 
+        -:   21: * a palavra "mundo" deve ser contada 1 vez.
+        -:   22: */
+        4:   23:TEST(ContaPalavrasTest, ContaPalavrasSimples) {
+        2:   24:    std::string texto = "ola ola mundo";
+        2:   25:    auto resultado = contarPalavras(texto);
+        -:   26:
+        -:   27:    // Verificar a contagem de palavras
+       2*:   28:    EXPECT_EQ(resultado["ola"], 2);
+       2*:   29:    EXPECT_EQ(resultado["mundo"], 1);
+        1:   30:}
+------------------
+_ZN43ContaPalavrasTest_ContaPalavrasSimples_TestC2Ev:
+        1:   23:TEST(ContaPalavrasTest, ContaPalavrasSimples) {
+------------------
+_ZN43ContaPalavrasTest_ContaPalavrasSimples_TestD0Ev:
+        1:   23:TEST(ContaPalavrasTest, ContaPalavrasSimples) {
+------------------
+_ZN43ContaPalavrasTest_ContaPalavrasSimples_TestD2Ev:
+        1:   23:TEST(ContaPalavrasTest, ContaPalavrasSimples) {
+------------------
+_ZN43ContaPalavrasTest_ContaPalavrasSimples_Test8TestBodyEv:
+        1:   23:TEST(ContaPalavrasTest, ContaPalavrasSimples) {
+        2:   24:    std::string texto = "ola ola mundo";
+        2:   25:    auto resultado = contarPalavras(texto);
+        -:   26:
+        -:   27:    // Verificar a contagem de palavras
+       2*:   28:    EXPECT_EQ(resultado["ola"], 2);
+       2*:   29:    EXPECT_EQ(resultado["mundo"], 1);
+        1:   30:}
+------------------
+        -:   31:
+        -:   32:/**
+        -:   33: * @brief Teste de contagem de palavras com pontuação.
+        -:   34: * 
+        -:   35: * Este teste verifica se a função `contarPalavras` consegue contar as palavras 
+        -:   36: * corretamente, ignorando pontuação (como vírgulas, pontos de exclamação e pontos).
+        -:   37: * A palavra "ola" deve ser contada 2 vezes e a palavra "mundo" deve ser contada 1 vez.
+        -:   38: */
+        4:   39:TEST(ContaPalavrasTest, ContaPalavrasComPontuacao) {
+        2:   40:    std::string texto = "ola, ola! mundo.";
+        2:   41:    auto resultado = contarPalavras(texto);
+        -:   42:
+        -:   43:    // Verificar a contagem de palavras (ignorando pontuação)
+       2*:   44:    EXPECT_EQ(resultado["ola"], 2);
+       2*:   45:    EXPECT_EQ(resultado["mundo"], 1);
+        1:   46:}
+------------------
+_ZN48ContaPalavrasTest_ContaPalavrasComPontuacao_TestC2Ev:
+        1:   39:TEST(ContaPalavrasTest, ContaPalavrasComPontuacao) {
+------------------
+_ZN48ContaPalavrasTest_ContaPalavrasComPontuacao_TestD0Ev:
+        1:   39:TEST(ContaPalavrasTest, ContaPalavrasComPontuacao) {
+------------------
+_ZN48ContaPalavrasTest_ContaPalavrasComPontuacao_TestD2Ev:
+        1:   39:TEST(ContaPalavrasTest, ContaPalavrasComPontuacao) {
+------------------
+_ZN48ContaPalavrasTest_ContaPalavrasComPontuacao_Test8TestBodyEv:
+        1:   39:TEST(ContaPalavrasTest, ContaPalavrasComPontuacao) {
+        2:   40:    std::string texto = "ola, ola! mundo.";
+        2:   41:    auto resultado = contarPalavras(texto);
+        -:   42:
+        -:   43:    // Verificar a contagem de palavras (ignorando pontuação)
+       2*:   44:    EXPECT_EQ(resultado["ola"], 2);
+       2*:   45:    EXPECT_EQ(resultado["mundo"], 1);
+        1:   46:}
+------------------
+        -:   47:
+        -:   48:/**
+        -:   49: * @brief Teste de contagem de palavras insensível a maiúsculas.
+        -:   50: * 
+        -:   51: * Este teste verifica se a função `contarPalavras` não faz distinção entre 
+        -:   52: * maiúsculas e minúsculas. Ou seja, "Ola" e "ola" devem ser tratadas como a 
+        -:   53: * mesma palavra, e "Mundo" e "mundo" também devem ser contadas como uma só.
+        -:   54: */
+        4:   55:TEST(ContaPalavrasTest, ContaPalavrasCaseInsensitive) {
+        2:   56:    std::string texto = "Ola ola Mundo mundo";
+        2:   57:    auto resultado = contarPalavras(texto);
+        -:   58:
+        -:   59:    // Verificar a contagem de palavras (ignorando diferenças de maiúsculas/minúsculas)
+       2*:   60:    EXPECT_EQ(resultado["ola"], 2);
+       2*:   61:    EXPECT_EQ(resultado["mundo"], 2);
+        1:   62:}
+------------------
+_ZN51ContaPalavrasTest_ContaPalavrasCaseInsensitive_TestC2Ev:
+        1:   55:TEST(ContaPalavrasTest, ContaPalavrasCaseInsensitive) {
+------------------
+_ZN51ContaPalavrasTest_ContaPalavrasCaseInsensitive_TestD0Ev:
+        1:   55:TEST(ContaPalavrasTest, ContaPalavrasCaseInsensitive) {
+------------------
+_ZN51ContaPalavrasTest_ContaPalavrasCaseInsensitive_TestD2Ev:
+        1:   55:TEST(ContaPalavrasTest, ContaPalavrasCaseInsensitive) {
+------------------
+_ZN51ContaPalavrasTest_ContaPalavrasCaseInsensitive_Test8TestBodyEv:
+        1:   55:TEST(ContaPalavrasTest, ContaPalavrasCaseInsensitive) {
+        2:   56:    std::string texto = "Ola ola Mundo mundo";
+        2:   57:    auto resultado = contarPalavras(texto);
+        -:   58:
+        -:   59:    // Verificar a contagem de palavras (ignorando diferenças de maiúsculas/minúsculas)
+       2*:   60:    EXPECT_EQ(resultado["ola"], 2);
+       2*:   61:    EXPECT_EQ(resultado["mundo"], 2);
+        1:   62:}
+------------------
+        -:   63:
+        -:   64:/**
+        -:   65: * @brief Teste de contagem em texto vazio.
+        -:   66: * 
+        -:   67: * Este teste verifica se a função `contarPalavras` retorna um mapa vazio 
+        -:   68: * quando o texto de entrada é vazio.
+        -:   69: */
+        4:   70:TEST(ContaPalavrasTest, ContaPalavrasVazia) {
+        2:   71:    std::string texto = "";
+        2:   72:    auto resultado = contarPalavras(texto);
+        -:   73:
+        -:   74:    // Verificar que o mapa está vazio
+       1*:   75:    EXPECT_TRUE(resultado.empty());
+        1:   76:}
+------------------
+_ZN41ContaPalavrasTest_ContaPalavrasVazia_TestC2Ev:
+        1:   70:TEST(ContaPalavrasTest, ContaPalavrasVazia) {
+------------------
+_ZN41ContaPalavrasTest_ContaPalavrasVazia_TestD0Ev:
+        1:   70:TEST(ContaPalavrasTest, ContaPalavrasVazia) {
+------------------
+_ZN41ContaPalavrasTest_ContaPalavrasVazia_TestD2Ev:
+        1:   70:TEST(ContaPalavrasTest, ContaPalavrasVazia) {
+------------------
+_ZN41ContaPalavrasTest_ContaPalavrasVazia_Test8TestBodyEv:
+        1:   70:TEST(ContaPalavrasTest, ContaPalavrasVazia) {
+        2:   71:    std::string texto = "";
+        2:   72:    auto resultado = contarPalavras(texto);
+        -:   73:
+        -:   74:    // Verificar que o mapa está vazio
+       1*:   75:    EXPECT_TRUE(resultado.empty());
+        1:   76:}
+------------------
+        -:   77:
+        -:   78:/**
+        -:   79: * @brief Teste de contagem de palavras com números.
+        -:   80: * 
+        -:   81: * Este teste verifica se a função `contarPalavras` lida corretamente com 
+        -:   82: * palavras que contêm números. A palavra "ano2025" deve ser contada 1 vez.
+        -:   83: */
+        4:   84:TEST(ContaPalavrasTest, ContaPalavrasComNumeros) {
+        2:   85:    std::string texto = "ano2025 ano2025";
+        2:   86:    auto resultado = contarPalavras(texto);
+        -:   87:
+        -:   88:    // Verificar a contagem da palavra com números
+       2*:   89:    EXPECT_EQ(resultado["ano2025"], 2);
+        1:   90:}
+------------------
+_ZN46ContaPalavrasTest_ContaPalavrasComNumeros_TestC2Ev:
+        1:   84:TEST(ContaPalavrasTest, ContaPalavrasComNumeros) {
+------------------
+_ZN46ContaPalavrasTest_ContaPalavrasComNumeros_TestD0Ev:
+        1:   84:TEST(ContaPalavrasTest, ContaPalavrasComNumeros) {
+------------------
+_ZN46ContaPalavrasTest_ContaPalavrasComNumeros_TestD2Ev:
+        1:   84:TEST(ContaPalavrasTest, ContaPalavrasComNumeros) {
+------------------
+_ZN46ContaPalavrasTest_ContaPalavrasComNumeros_Test8TestBodyEv:
+        1:   84:TEST(ContaPalavrasTest, ContaPalavrasComNumeros) {
+        2:   85:    std::string texto = "ano2025 ano2025";
+        2:   86:    auto resultado = contarPalavras(texto);
+        -:   87:
+        -:   88:    // Verificar a contagem da palavra com números
+       2*:   89:    EXPECT_EQ(resultado["ano2025"], 2);
+        1:   90:}
+------------------
+        -:   91:
+        -:   92:/**
+        -:   93: * @brief Teste de contagem de palavras com múltiplas ocorrências e pontuação.
+        -:   94: * 
+        -:   95: * Este teste verifica se a função `contarPalavras` consegue contar corretamente 
+        -:   96: * palavras com múltiplas ocorrências e pontuação misturada, como vírgulas e pontos.
+        -:   97: * A palavra "olá" deve ser contada 3 vezes e a palavra "mundo" deve ser contada 2 vezes.
+        -:   98: */
+        4:   99:TEST(ContaPalavrasTest, ContaPalavrasMultiplaComPontuacao) {
+        2:  100:    std::string texto = "ola, ola! mundo. mundo";
+        2:  101:    auto resultado = contarPalavras(texto);
+        -:  102:
+       2*:  103:    EXPECT_EQ(resultado["ola"], 2);  // "olá" aparece 2 vezes, removendo acentos e pontuação
+       2*:  104:    EXPECT_EQ(resultado["mundo"], 2);  // "mundo" aparece 2 vezes
+        1:  105:}
+------------------
+_ZN56ContaPalavrasTest_ContaPalavrasMultiplaComPontuacao_TestC2Ev:
+        1:   99:TEST(ContaPalavrasTest, ContaPalavrasMultiplaComPontuacao) {
+------------------
+_ZN56ContaPalavrasTest_ContaPalavrasMultiplaComPontuacao_TestD0Ev:
+        1:   99:TEST(ContaPalavrasTest, ContaPalavrasMultiplaComPontuacao) {
+------------------
+_ZN56ContaPalavrasTest_ContaPalavrasMultiplaComPontuacao_TestD2Ev:
+        1:   99:TEST(ContaPalavrasTest, ContaPalavrasMultiplaComPontuacao) {
+------------------
+_ZN56ContaPalavrasTest_ContaPalavrasMultiplaComPontuacao_Test8TestBodyEv:
+        1:   99:TEST(ContaPalavrasTest, ContaPalavrasMultiplaComPontuacao) {
+        2:  100:    std::string texto = "ola, ola! mundo. mundo";
+        2:  101:    auto resultado = contarPalavras(texto);
+        -:  102:
+       2*:  103:    EXPECT_EQ(resultado["ola"], 2);  // "olá" aparece 2 vezes, removendo acentos e pontuação
+       2*:  104:    EXPECT_EQ(resultado["mundo"], 2);  // "mundo" aparece 2 vezes
+        1:  105:}
+------------------
+        -:  106:
+        -:  107:/**
+        -:  108: * @brief Testa se a função lida corretamente com palavras contendo hífens.
+        -:  109: * 
+        -:  110: * Este teste verifica se palavras compostas por hífens são tratadas como únicas,
+        -:  111: * sem serem divididas.
+        -:  112: */
+        4:  113:TEST(ContaPalavrasTest, ContaPalavrasComHifen) {
+        2:  114:    std::string texto = "meia-noite meia-noite bom-dia";
+        2:  115:    auto resultado = contarPalavras(texto);
+        -:  116:
+        -:  117:    // "meia-noite" deve aparecer 2 vezes e "bom-dia" deve aparecer 1 vez
+       2*:  118:    EXPECT_EQ(resultado["meia-noite"], 2);
+       2*:  119:    EXPECT_EQ(resultado["bom-dia"], 1);
+        1:  120:}
+------------------
+_ZN44ContaPalavrasTest_ContaPalavrasComHifen_TestC2Ev:
+        1:  113:TEST(ContaPalavrasTest, ContaPalavrasComHifen) {
+------------------
+_ZN44ContaPalavrasTest_ContaPalavrasComHifen_TestD0Ev:
+        1:  113:TEST(ContaPalavrasTest, ContaPalavrasComHifen) {
+------------------
+_ZN44ContaPalavrasTest_ContaPalavrasComHifen_TestD2Ev:
+        1:  113:TEST(ContaPalavrasTest, ContaPalavrasComHifen) {
+------------------
+_ZN44ContaPalavrasTest_ContaPalavrasComHifen_Test8TestBodyEv:
+        1:  113:TEST(ContaPalavrasTest, ContaPalavrasComHifen) {
+        2:  114:    std::string texto = "meia-noite meia-noite bom-dia";
+        2:  115:    auto resultado = contarPalavras(texto);
+        -:  116:
+        -:  117:    // "meia-noite" deve aparecer 2 vezes e "bom-dia" deve aparecer 1 vez
+       2*:  118:    EXPECT_EQ(resultado["meia-noite"], 2);
+       2*:  119:    EXPECT_EQ(resultado["bom-dia"], 1);
+        1:  120:}
+------------------
+        -:  121:
+        -:  122:/**
+        -:  123: * @brief Testa se a função lida corretamente com palavras alfanuméricas.
+        -:  124: * 
+        -:  125: * Este teste verifica se palavras que contêm combinações de letras e números
+        -:  126: * são processadas adequadamente.
+        -:  127: */
+        4:  128:TEST(ContaPalavrasTest, ContaPalavrasComAlfanumericos) {
+        2:  129:    std::string texto = "abc123 123abc abc123";
+        2:  130:    auto resultado = contarPalavras(texto);
+        -:  131:
+        -:  132:    // "abc123" deve aparecer 2 vezes e "123abc" deve aparecer 1 vez
+       2*:  133:    EXPECT_EQ(resultado["abc123"], 2);
+       2*:  134:    EXPECT_EQ(resultado["123abc"], 1);
+        1:  135:}
+------------------
+_ZN52ContaPalavrasTest_ContaPalavrasComAlfanumericos_TestC2Ev:
+        1:  128:TEST(ContaPalavrasTest, ContaPalavrasComAlfanumericos) {
+------------------
+_ZN52ContaPalavrasTest_ContaPalavrasComAlfanumericos_TestD0Ev:
+        1:  128:TEST(ContaPalavrasTest, ContaPalavrasComAlfanumericos) {
+------------------
+_ZN52ContaPalavrasTest_ContaPalavrasComAlfanumericos_TestD2Ev:
+        1:  128:TEST(ContaPalavrasTest, ContaPalavrasComAlfanumericos) {
+------------------
+_ZN52ContaPalavrasTest_ContaPalavrasComAlfanumericos_Test8TestBodyEv:
+        1:  128:TEST(ContaPalavrasTest, ContaPalavrasComAlfanumericos) {
+        2:  129:    std::string texto = "abc123 123abc abc123";
+        2:  130:    auto resultado = contarPalavras(texto);
+        -:  131:
+        -:  132:    // "abc123" deve aparecer 2 vezes e "123abc" deve aparecer 1 vez
+       2*:  133:    EXPECT_EQ(resultado["abc123"], 2);
+       2*:  134:    EXPECT_EQ(resultado["123abc"], 1);
+        1:  135:}
+------------------
+        -:  136:
+        -:  137:/**
+        -:  138: * @brief Testa palavras compostas com hífen.
+        -:  139: * 
+        -:  140: * Este teste verifica se a função contarPalavras processa corretamente palavras compostas
+        -:  141: * que contêm hífen, como "meia-noite" ou "bem-vindo".
+        -:  142: */
+        4:  143:TEST(ContaPalavrasTest, PalavrasComHifen) {
+        2:  144:    std::string texto = "meia-noite e um horario comum. bem-vindo ao ano 2025.";
+        2:  145:    auto resultado = contarPalavras(texto);
+       2*:  146:    EXPECT_EQ(resultado["meia-noite"], 1);
+       2*:  147:    EXPECT_EQ(resultado["bem-vindo"], 1);
+       2*:  148:    EXPECT_EQ(resultado["um"], 1);
+       2*:  149:    EXPECT_EQ(resultado["e"], 1);
+       2*:  150:    EXPECT_EQ(resultado["horario"], 1);
+       2*:  151:    EXPECT_EQ(resultado["comum"], 1);
+       2*:  152:    EXPECT_EQ(resultado["ao"], 1);
+       2*:  153:    EXPECT_EQ(resultado["ano"], 1);
+       2*:  154:    EXPECT_EQ(resultado["2025"], 1);
+        1:  155:}
+------------------
+_ZN39ContaPalavrasTest_PalavrasComHifen_TestC2Ev:
+        1:  143:TEST(ContaPalavrasTest, PalavrasComHifen) {
+------------------
+_ZN39ContaPalavrasTest_PalavrasComHifen_TestD0Ev:
+        1:  143:TEST(ContaPalavrasTest, PalavrasComHifen) {
+------------------
+_ZN39ContaPalavrasTest_PalavrasComHifen_TestD2Ev:
+        1:  143:TEST(ContaPalavrasTest, PalavrasComHifen) {
+------------------
+_ZN39ContaPalavrasTest_PalavrasComHifen_Test8TestBodyEv:
+        1:  143:TEST(ContaPalavrasTest, PalavrasComHifen) {
+        2:  144:    std::string texto = "meia-noite e um horario comum. bem-vindo ao ano 2025.";
+        2:  145:    auto resultado = contarPalavras(texto);
+       2*:  146:    EXPECT_EQ(resultado["meia-noite"], 1);
+       2*:  147:    EXPECT_EQ(resultado["bem-vindo"], 1);
+       2*:  148:    EXPECT_EQ(resultado["um"], 1);
+       2*:  149:    EXPECT_EQ(resultado["e"], 1);
+       2*:  150:    EXPECT_EQ(resultado["horario"], 1);
+       2*:  151:    EXPECT_EQ(resultado["comum"], 1);
+       2*:  152:    EXPECT_EQ(resultado["ao"], 1);
+       2*:  153:    EXPECT_EQ(resultado["ano"], 1);
+       2*:  154:    EXPECT_EQ(resultado["2025"], 1);
+        1:  155:}
+------------------
+        -:  156:
+        -:  157:/**
+        -:  158: * @brief Testa palavras com pontuação.
+        -:  159: * 
+        -:  160: * Este teste verifica se a função contarPalavras processa corretamente palavras com
+        -:  161: * pontuação no final, como "com", "pontuação!" e "isso?".
+        -:  162: */
+        4:  163:TEST(ContaPalavrasTest, PalavrasComPontos) {
+        2:  164:    std::string texto = "com Vinicius pontos! isso? mas. legal!! Vinicius Junior,,";
+        2:  165:    auto resultado = contarPalavras(texto);
+       2*:  166:    EXPECT_EQ(resultado["com"], 1);
+       2*:  167:    EXPECT_EQ(resultado["pontos"], 1);
+       2*:  168:    EXPECT_EQ(resultado["isso"], 1);
+       2*:  169:    EXPECT_EQ(resultado["mas"], 1);
+       2*:  170:    EXPECT_EQ(resultado["legal"], 1);
+       2*:  171:    EXPECT_EQ(resultado["vinicius"], 2);
+       2*:  172:    EXPECT_EQ(resultado["junior"], 1);
+        1:  173:}
+------------------
+_ZN40ContaPalavrasTest_PalavrasComPontos_TestC2Ev:
+        1:  163:TEST(ContaPalavrasTest, PalavrasComPontos) {
+------------------
+_ZN40ContaPalavrasTest_PalavrasComPontos_TestD0Ev:
+        1:  163:TEST(ContaPalavrasTest, PalavrasComPontos) {
+------------------
+_ZN40ContaPalavrasTest_PalavrasComPontos_TestD2Ev:
+        1:  163:TEST(ContaPalavrasTest, PalavrasComPontos) {
+------------------
+_ZN40ContaPalavrasTest_PalavrasComPontos_Test8TestBodyEv:
+        1:  163:TEST(ContaPalavrasTest, PalavrasComPontos) {
+        2:  164:    std::string texto = "com Vinicius pontos! isso? mas. legal!! Vinicius Junior,,";
+        2:  165:    auto resultado = contarPalavras(texto);
+       2*:  166:    EXPECT_EQ(resultado["com"], 1);
+       2*:  167:    EXPECT_EQ(resultado["pontos"], 1);
+       2*:  168:    EXPECT_EQ(resultado["isso"], 1);
+       2*:  169:    EXPECT_EQ(resultado["mas"], 1);
+       2*:  170:    EXPECT_EQ(resultado["legal"], 1);
+       2*:  171:    EXPECT_EQ(resultado["vinicius"], 2);
+       2*:  172:    EXPECT_EQ(resultado["junior"], 1);
+        1:  173:}
+------------------
+        -:  174:
+        -:  175:/**
+        -:  176: * @brief Testa a remoção de pontuação ao redor de palavras compostas com hífen.
+        -:  177: * 
+        -:  178: * Este teste verifica se a pontuação ao redor de palavras compostas com hífen é
+        -:  179: * corretamente removida, e se as palavras são contadas sem alterações indesejadas.
+        -:  180: */
+        4:  181:TEST(ContaPalavrasTest, PontuacaoComHifen) {
+        2:  182:    std::string texto = "ola, boa-tarde! como-vai voce?";
+        2:  183:    auto resultado = contarPalavras(texto);
+        -:  184:    
+       2*:  185:    EXPECT_EQ(resultado["ola"], 1);          // Palavra simples
+       2*:  186:    EXPECT_EQ(resultado["boa-tarde"], 1);    // Palavra composta com hífen
+       2*:  187:    EXPECT_EQ(resultado["como-vai"], 1);     // Palavra composta com hífen
+       2*:  188:    EXPECT_EQ(resultado["voce"], 1);         // Palavra simples
+        1:  189:}
+------------------
+_ZN40ContaPalavrasTest_PontuacaoComHifen_TestC2Ev:
+        1:  181:TEST(ContaPalavrasTest, PontuacaoComHifen) {
+------------------
+_ZN40ContaPalavrasTest_PontuacaoComHifen_TestD0Ev:
+        1:  181:TEST(ContaPalavrasTest, PontuacaoComHifen) {
+------------------
+_ZN40ContaPalavrasTest_PontuacaoComHifen_TestD2Ev:
+        1:  181:TEST(ContaPalavrasTest, PontuacaoComHifen) {
+------------------
+_ZN40ContaPalavrasTest_PontuacaoComHifen_Test8TestBodyEv:
+        1:  181:TEST(ContaPalavrasTest, PontuacaoComHifen) {
+        2:  182:    std::string texto = "ola, boa-tarde! como-vai voce?";
+        2:  183:    auto resultado = contarPalavras(texto);
+        -:  184:    
+       2*:  185:    EXPECT_EQ(resultado["ola"], 1);          // Palavra simples
+       2*:  186:    EXPECT_EQ(resultado["boa-tarde"], 1);    // Palavra composta com hífen
+       2*:  187:    EXPECT_EQ(resultado["como-vai"], 1);     // Palavra composta com hífen
+       2*:  188:    EXPECT_EQ(resultado["voce"], 1);         // Palavra simples
+        1:  189:}
+------------------
+        -:  190:
+        -:  191:/**
+        -:  192: * @brief Testa palavras compostas com hífen e pontuação.
+        -:  193: * 
+        -:  194: * Este teste verifica se as palavras compostas com hífen são corretamente reconhecidas
+        -:  195: * e se a pontuação é removida adequadamente, sem afetar as palavras compostas.
+        -:  196: */
+        4:  197:TEST(ContaPalavrasTest, PalavrasComHifenEPontuacao) {
+        2:  198:    std::string texto = "meia-noite, bem-vindo ao mundo!";
+        2:  199:    auto resultado = contarPalavras(texto);
+        -:  200:    
+       2*:  201:    EXPECT_EQ(resultado["meia-noite"], 1);  // Palavra composta com hífen
+       2*:  202:    EXPECT_EQ(resultado["bem-vindo"], 1);   // Palavra composta com hífen
+       2*:  203:    EXPECT_EQ(resultado["ao"], 1);          // Palavra simples
+       2*:  204:    EXPECT_EQ(resultado["mundo"], 1);       // Palavra simples
+        1:  205:}
+------------------
+_ZN49ContaPalavrasTest_PalavrasComHifenEPontuacao_TestC2Ev:
+        1:  197:TEST(ContaPalavrasTest, PalavrasComHifenEPontuacao) {
+------------------
+_ZN49ContaPalavrasTest_PalavrasComHifenEPontuacao_TestD0Ev:
+        1:  197:TEST(ContaPalavrasTest, PalavrasComHifenEPontuacao) {
+------------------
+_ZN49ContaPalavrasTest_PalavrasComHifenEPontuacao_TestD2Ev:
+        1:  197:TEST(ContaPalavrasTest, PalavrasComHifenEPontuacao) {
+------------------
+_ZN49ContaPalavrasTest_PalavrasComHifenEPontuacao_Test8TestBodyEv:
+        1:  197:TEST(ContaPalavrasTest, PalavrasComHifenEPontuacao) {
+        2:  198:    std::string texto = "meia-noite, bem-vindo ao mundo!";
+        2:  199:    auto resultado = contarPalavras(texto);
+        -:  200:    
+       2*:  201:    EXPECT_EQ(resultado["meia-noite"], 1);  // Palavra composta com hífen
+       2*:  202:    EXPECT_EQ(resultado["bem-vindo"], 1);   // Palavra composta com hífen
+       2*:  203:    EXPECT_EQ(resultado["ao"], 1);          // Palavra simples
+       2*:  204:    EXPECT_EQ(resultado["mundo"], 1);       // Palavra simples
+        1:  205:}
+------------------
+        -:  206:
+        -:  207:
+        -:  208:
+        -:  209:

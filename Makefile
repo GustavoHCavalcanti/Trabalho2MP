@@ -34,7 +34,7 @@ $(TARGET_MAIN): $(MAIN_OBJECTS)
 
 # Limpeza dos arquivos gerados
 clean:
-	rm -f *.o $(TARGET_MAIN) $(TARGET_TEST) *.gcov
+	rm -f *.o $(TARGET_MAIN) $(TARGET_TEST) *.gcov *.gcda *.gcno
 	rm -rf $(COVERAGE_DIR)/*.gcda $(COVERAGE_DIR)/*.gcno
 	rm -rf $(DOXYGEN_DIR)
 
@@ -47,15 +47,16 @@ valgrind:
 	valgrind ./$(TARGET_MAIN)
 
 cppcheck:
-	cppcheck --enable=warning --language=c .
+	cppcheck --enable=warning --language=c . 
 
 coverage: $(TARGET_MAIN)
 	mkdir -p $(COVERAGE_DIR)  # Cria a pasta de cobertura, se não existir
 	./$(TARGET_MAIN)  # Executa o programa
 	mv *.gcda $(COVERAGE_DIR)  # Move os arquivos .gcda para o diretório de cobertura
 	mv *.gcno $(COVERAGE_DIR)  # Move os arquivos .gcno para o diretório de cobertura
-	gcov $(COVERAGE_DIR)/conta_palavras.cpp  # Gera a cobertura para conta_palavras
-	gcov $(COVERAGE_DIR)/testa_conta_palavras.cpp  # Gera a cobertura para testa_conta_palavras
+	# Gera a cobertura para os arquivos específicos do projeto
+	gcov $(COVERAGE_DIR)/conta_palavras.cpp -o $(COVERAGE_DIR)
+	gcov $(COVERAGE_DIR)/testa_conta_palavras.cpp -o $(COVERAGE_DIR)
 
 # Documentação com Doxygen
 doc:

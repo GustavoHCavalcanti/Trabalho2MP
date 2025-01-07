@@ -1,0 +1,116 @@
+        -:    0:Source:conta_palavras.cpp
+        -:    0:Graph:coverage_reports/conta_palavras.gcno
+        -:    0:Data:coverage_reports/conta_palavras.gcda
+        -:    0:Runs:1
+        -:    1:#include "conta_palavras.hpp"
+        -:    2:#include <sstream>
+        -:    3:#include <cctype>
+        -:    4:#include <algorithm>
+        -:    5:#include <map>
+        -:    6:#include <string>
+        -:    7:#include <locale>
+        -:    8:#include <codecvt>
+        -:    9:#include <iterator>
+        -:   10:
+        -:   11:/**
+        -:   12: * @brief Remove acentos de uma string, substituindo caracteres acentuados por seus equivalentes sem acento.
+        -:   13: * 
+        -:   14: * @param palavra A palavra a ser normalizada.
+        -:   15: * @return A palavra sem acentos.
+        -:   16: */
+       47:   17:std::string removerAcentos(const std::string& palavra) {
+       47:   18:    std::string resultado;
+      296:   19:    for (char c : palavra) {
+      249:   20:        switch (c) {
+        -:   21:            case 'á': case 'à': case 'ã': case 'â': case 'ä':
+        -:   22:                resultado += 'a';
+        -:   23:                break;
+        -:   24:            case 'é': case 'è': case 'ê': case 'ë':
+        -:   25:                resultado += 'e';
+        -:   26:                break;
+        -:   27:            case 'í': case 'ì': case 'î': case 'ï':
+        -:   28:                resultado += 'i';
+        -:   29:                break;
+        -:   30:            case 'ó': case 'ò': case 'ô': case 'õ': case 'ö':
+        -:   31:                resultado += 'o';
+        -:   32:                break;
+        -:   33:            case 'ú': case 'ù': case 'û': case 'ü':
+        -:   34:                resultado += 'u';
+        -:   35:                break;
+        -:   36:            case 'ç':
+        -:   37:                resultado += 'c';
+        -:   38:                break;
+        -:   39:            case 'ñ':
+        -:   40:                resultado += 'n';
+        -:   41:                break;
+        -:   42:            default:
+      249:   43:                resultado += c;
+        -:   44:        }
+        -:   45:    }
+       47:   46:    return resultado;
+        -:   47:}
+        -:   48:
+        -:   49:/**
+        -:   50: * @brief Verifica se uma palavra com hífen é válida.
+        -:   51: * 
+        -:   52: * Uma palavra com hífen é considerada válida se:
+        -:   53: * - O hífen está entre caracteres alfanuméricos.
+        -:   54: * - Não contém múltiplos hífens consecutivos.
+        -:   55: * 
+        -:   56: * @param palavra A palavra a ser validada.
+        -:   57: * @return true se a palavra for válida, false caso contrário.
+        -:   58: */
+       47:   59:bool palavraComHifenValida(const std::string& palavra) {
+      47*:   60:    if (palavra.find("--") != std::string::npos) return false; // Evita múltiplos hífens consecutivos
+      47*:   61:    if (palavra.front() == '-' || palavra.back() == '-') return false; // Hífen no início ou fim
+       94:   62:    return std::all_of(palavra.begin(), palavra.end(), [](char c) {
+     249*:   63:        return std::isalnum(c) || c == '-';
+       47:   64:    });
+        -:   65:}
+        -:   66:
+        -:   67:/**
+        -:   68: * @brief Remove toda a pontuação de uma string, mantendo apenas letras, números e espaços.
+        -:   69: * 
+        -:   70: * @param texto O texto a ser processado.
+        -:   71: * @return O texto sem pontuação.
+        -:   72: */
+       12:   73:std::string removerPontuacao(const std::string& texto) {
+       12:   74:    std::string resultado;
+      317:   75:    for (char c : texto) {
+      305:   76:        if (std::isalnum(c) || std::isspace(c) || c == '-') { // Mantém letras, números, espaços e hífens
+      285:   77:            resultado += c;
+        -:   78:        }
+        -:   79:    }
+       12:   80:    return resultado;
+        -:   81:}
+        -:   82:
+        -:   83:/**
+        -:   84: * @brief Conta as palavras distintas em um texto, considerando critérios como case-insensitivity,
+        -:   85: * remoção de pontuação e suporte a palavras compostas com hífen.
+        -:   86: * 
+        -:   87: * @param texto O texto a ser processado.
+        -:   88: * @return Um mapa com as palavras e suas respectivas contagens.
+        -:   89: */
+       12:   90:std::map<std::string, int> contarPalavras(const std::string& texto) {
+       12:   91:    std::map<std::string, int> contagem;
+       24:   92:    std::string textoSemPontuacao = removerPontuacao(texto); // Remove toda a pontuação
+       24:   93:    std::stringstream ss(textoSemPontuacao);
+       24:   94:    std::string palavra;
+        -:   95:
+       59:   96:    while (ss >> palavra) {
+       47:   97:        palavra = removerAcentos(palavra); // Remove acentos da palavra
+       47:   98:        std::transform(palavra.begin(), palavra.end(), palavra.begin(), ::tolower); // Converte para minúsculas
+        -:   99:
+      47*:  100:        if (!palavra.empty() && palavraComHifenValida(palavra)) { // Adiciona ao mapa se válido
+       47:  101:            contagem[palavra]++;
+        -:  102:        }
+        -:  103:    }
+        -:  104:
+       24:  105:    return contagem;
+        -:  106:}
+        -:  107:
+        -:  108:
+        -:  109:
+        -:  110:
+        -:  111:
+        -:  112:
