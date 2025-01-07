@@ -104,6 +104,35 @@ TEST(ContaPalavrasTest, ContaPalavrasMultiplaComPontuacao) {
     EXPECT_EQ(resultado["mundo"], 2);  // "mundo" aparece 2 vezes
 }
 
+/**
+ * @brief Testa se a função lida corretamente com palavras contendo hífens.
+ * 
+ * Este teste verifica se palavras compostas por hífens são tratadas como únicas,
+ * sem serem divididas.
+ */
+TEST(ContaPalavrasTest, ContaPalavrasComHifen) {
+    std::string texto = "meia-noite meia-noite bom-dia";
+    auto resultado = contarPalavras(texto);
+
+    // "meia-noite" deve aparecer 2 vezes e "bom-dia" deve aparecer 1 vez
+    EXPECT_EQ(resultado["meia-noite"], 2);
+    EXPECT_EQ(resultado["bom-dia"], 1);
+}
+
+/**
+ * @brief Testa se a função lida corretamente com palavras alfanuméricas.
+ * 
+ * Este teste verifica se palavras que contêm combinações de letras e números
+ * são processadas adequadamente.
+ */
+TEST(ContaPalavrasTest, ContaPalavrasComAlfanumericos) {
+    std::string texto = "abc123 123abc abc123";
+    auto resultado = contarPalavras(texto);
+
+    // "abc123" deve aparecer 2 vezes e "123abc" deve aparecer 1 vez
+    EXPECT_EQ(resultado["abc123"], 2);
+    EXPECT_EQ(resultado["123abc"], 1);
+}
 
 
 
