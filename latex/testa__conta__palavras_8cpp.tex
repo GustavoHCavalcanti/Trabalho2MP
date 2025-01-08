@@ -26,7 +26,17 @@ Include dependency graph for testa\+\_\+conta\+\_\+palavras.\+cpp\+:
 \mbox{\hyperlink{testa__conta__palavras_8cpp_a353fa9fbef052cd9d60195d7e599067d}{T\+E\+ST}} (Conta\+Palavras\+Test, Conta\+Palavras\+Multipla\+Com\+Pontuacao)
 \begin{DoxyCompactList}\small\item\em Teste de contagem de palavras com múltiplas ocorrências e pontuação. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{testa__conta__palavras_8cpp_a2bae0049c2c41c4121299ac7cef01b00}{T\+E\+ST}} (Conta\+Palavras\+Test, Conta\+Palavras\+Com\+Hifen)
-\begin{DoxyCompactList}\small\item\em Testa se a função lida corretamente com palavras contendo hífens. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Testa se a função lida corretamente com palavras contendo hífens. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{testa__conta__palavras_8cpp_a38802a37058749e85628ab1e507faff0}{T\+E\+ST}} (Conta\+Palavras\+Test, Conta\+Palavras\+Com\+Alfanumericos)
+\begin{DoxyCompactList}\small\item\em Testa se a função lida corretamente com palavras alfanuméricas. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{testa__conta__palavras_8cpp_a048a6b7dd4e1d9d34f527163667b769a}{T\+E\+ST}} (Conta\+Palavras\+Test, Palavras\+Com\+Hifen)
+\begin{DoxyCompactList}\small\item\em Testa palavras compostas com hífen. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{testa__conta__palavras_8cpp_a6dc7e2502be0f81547136bc1b877f274}{T\+E\+ST}} (Conta\+Palavras\+Test, Palavras\+Com\+Pontos)
+\begin{DoxyCompactList}\small\item\em Testa palavras com pontuação. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{testa__conta__palavras_8cpp_a8b7da0494217f5e7d09a467b80fd0516}{T\+E\+ST}} (Conta\+Palavras\+Test, Pontuacao\+Com\+Hifen)
+\begin{DoxyCompactList}\small\item\em Testa a remoção de pontuação ao redor de palavras compostas com hífen. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{testa__conta__palavras_8cpp_ab1fff277b440f3b90b95c0ac12142699}{T\+E\+ST}} (Conta\+Palavras\+Test, Palavras\+Com\+Hifen\+E\+Pontuacao)
+\begin{DoxyCompactList}\small\item\em Testa palavras compostas com hífen e pontuação. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -38,17 +48,27 @@ Este arquivo contém testes para a função {\ttfamily contar\+Palavras}, que co
 \mbox{\Hypertarget{testa__conta__palavras_8cpp_a0a6599cd9d3436156ee62a56f4aa4b4e}\label{testa__conta__palavras_8cpp_a0a6599cd9d3436156ee62a56f4aa4b4e}} 
 \index{testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}!TEST@{TEST}}
 \index{TEST@{TEST}!testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}}
-\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [1/7]}}
+\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [1/12]}}
 {\footnotesize\ttfamily T\+E\+ST (\begin{DoxyParamCaption}\item[{Conta\+Palavras\+Test}]{,  }\item[{Conta\+Palavras\+Case\+Insensitive}]{ }\end{DoxyParamCaption})}
 
 
 
 Teste de contagem de palavras insensível a maiúsculas. 
 
-Este teste verifica se a função {\ttfamily contar\+Palavras} não faz distinção entre maiúsculas e minúsculas. Ou seja, \char`\"{}\+Ola\char`\"{} e \char`\"{}ola\char`\"{} devem ser tratadas como a mesma palavra, e \char`\"{}\+Mundo\char`\"{} e \char`\"{}mundo\char`\"{} também devem ser contadas como uma só. \mbox{\Hypertarget{testa__conta__palavras_8cpp_a2bae0049c2c41c4121299ac7cef01b00}\label{testa__conta__palavras_8cpp_a2bae0049c2c41c4121299ac7cef01b00}} 
+Este teste verifica se a função {\ttfamily contar\+Palavras} não faz distinção entre maiúsculas e minúsculas. Ou seja, \char`\"{}\+Ola\char`\"{} e \char`\"{}ola\char`\"{} devem ser tratadas como a mesma palavra, e \char`\"{}\+Mundo\char`\"{} e \char`\"{}mundo\char`\"{} também devem ser contadas como uma só. \mbox{\Hypertarget{testa__conta__palavras_8cpp_a38802a37058749e85628ab1e507faff0}\label{testa__conta__palavras_8cpp_a38802a37058749e85628ab1e507faff0}} 
 \index{testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}!TEST@{TEST}}
 \index{TEST@{TEST}!testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}}
-\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [2/7]}}
+\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [2/12]}}
+{\footnotesize\ttfamily T\+E\+ST (\begin{DoxyParamCaption}\item[{Conta\+Palavras\+Test}]{,  }\item[{Conta\+Palavras\+Com\+Alfanumericos}]{ }\end{DoxyParamCaption})}
+
+
+
+Testa se a função lida corretamente com palavras alfanuméricas. 
+
+Este teste verifica se palavras que contêm combinações de letras e números são processadas adequadamente. \mbox{\Hypertarget{testa__conta__palavras_8cpp_a2bae0049c2c41c4121299ac7cef01b00}\label{testa__conta__palavras_8cpp_a2bae0049c2c41c4121299ac7cef01b00}} 
+\index{testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}!TEST@{TEST}}
+\index{TEST@{TEST}!testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}}
+\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [3/12]}}
 {\footnotesize\ttfamily T\+E\+ST (\begin{DoxyParamCaption}\item[{Conta\+Palavras\+Test}]{,  }\item[{Conta\+Palavras\+Com\+Hifen}]{ }\end{DoxyParamCaption})}
 
 
@@ -58,7 +78,7 @@ Testa se a função lida corretamente com palavras contendo hífens.
 Este teste verifica se palavras compostas por hífens são tratadas como únicas, sem serem divididas. \mbox{\Hypertarget{testa__conta__palavras_8cpp_aad314594518722c093f27cdfd11997e2}\label{testa__conta__palavras_8cpp_aad314594518722c093f27cdfd11997e2}} 
 \index{testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}!TEST@{TEST}}
 \index{TEST@{TEST}!testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}}
-\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [3/7]}}
+\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [4/12]}}
 {\footnotesize\ttfamily T\+E\+ST (\begin{DoxyParamCaption}\item[{Conta\+Palavras\+Test}]{,  }\item[{Conta\+Palavras\+Com\+Numeros}]{ }\end{DoxyParamCaption})}
 
 
@@ -68,7 +88,7 @@ Teste de contagem de palavras com números.
 Este teste verifica se a função {\ttfamily contar\+Palavras} lida corretamente com palavras que contêm números. A palavra \char`\"{}ano2025\char`\"{} deve ser contada 1 vez. \mbox{\Hypertarget{testa__conta__palavras_8cpp_a211f442e898bd78d6849b12adeb1dc57}\label{testa__conta__palavras_8cpp_a211f442e898bd78d6849b12adeb1dc57}} 
 \index{testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}!TEST@{TEST}}
 \index{TEST@{TEST}!testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}}
-\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [4/7]}}
+\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [5/12]}}
 {\footnotesize\ttfamily T\+E\+ST (\begin{DoxyParamCaption}\item[{Conta\+Palavras\+Test}]{,  }\item[{Conta\+Palavras\+Com\+Pontuacao}]{ }\end{DoxyParamCaption})}
 
 
@@ -78,7 +98,7 @@ Teste de contagem de palavras com pontuação.
 Este teste verifica se a função {\ttfamily contar\+Palavras} consegue contar as palavras corretamente, ignorando pontuação (como vírgulas, pontos de exclamação e pontos). A palavra \char`\"{}ola\char`\"{} deve ser contada 2 vezes e a palavra \char`\"{}mundo\char`\"{} deve ser contada 1 vez. \mbox{\Hypertarget{testa__conta__palavras_8cpp_a353fa9fbef052cd9d60195d7e599067d}\label{testa__conta__palavras_8cpp_a353fa9fbef052cd9d60195d7e599067d}} 
 \index{testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}!TEST@{TEST}}
 \index{TEST@{TEST}!testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}}
-\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [5/7]}}
+\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [6/12]}}
 {\footnotesize\ttfamily T\+E\+ST (\begin{DoxyParamCaption}\item[{Conta\+Palavras\+Test}]{,  }\item[{Conta\+Palavras\+Multipla\+Com\+Pontuacao}]{ }\end{DoxyParamCaption})}
 
 
@@ -88,7 +108,7 @@ Teste de contagem de palavras com múltiplas ocorrências e pontuação.
 Este teste verifica se a função {\ttfamily contar\+Palavras} consegue contar corretamente palavras com múltiplas ocorrências e pontuação misturada, como vírgulas e pontos. A palavra \char`\"{}olá\char`\"{} deve ser contada 3 vezes e a palavra \char`\"{}mundo\char`\"{} deve ser contada 2 vezes. \mbox{\Hypertarget{testa__conta__palavras_8cpp_acf46509a9db9de11000a05c9db144f52}\label{testa__conta__palavras_8cpp_acf46509a9db9de11000a05c9db144f52}} 
 \index{testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}!TEST@{TEST}}
 \index{TEST@{TEST}!testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}}
-\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [6/7]}}
+\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [7/12]}}
 {\footnotesize\ttfamily T\+E\+ST (\begin{DoxyParamCaption}\item[{Conta\+Palavras\+Test}]{,  }\item[{Conta\+Palavras\+Simples}]{ }\end{DoxyParamCaption})}
 
 
@@ -98,11 +118,51 @@ Teste de contagem de palavras simples.
 Este teste verifica se a função {\ttfamily contar\+Palavras} consegue contar corretamente as palavras em um texto simples. A palavra \char`\"{}ola\char`\"{} deve ser contada 2 vezes e a palavra \char`\"{}mundo\char`\"{} deve ser contada 1 vez. \mbox{\Hypertarget{testa__conta__palavras_8cpp_af71cd334cd7dddbb7574dcbc28775746}\label{testa__conta__palavras_8cpp_af71cd334cd7dddbb7574dcbc28775746}} 
 \index{testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}!TEST@{TEST}}
 \index{TEST@{TEST}!testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}}
-\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [7/7]}}
+\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [8/12]}}
 {\footnotesize\ttfamily T\+E\+ST (\begin{DoxyParamCaption}\item[{Conta\+Palavras\+Test}]{,  }\item[{Conta\+Palavras\+Vazia}]{ }\end{DoxyParamCaption})}
 
 
 
 Teste de contagem em texto vazio. 
 
-Este teste verifica se a função {\ttfamily contar\+Palavras} retorna um mapa vazio quando o texto de entrada é vazio. 
+Este teste verifica se a função {\ttfamily contar\+Palavras} retorna um mapa vazio quando o texto de entrada é vazio. \mbox{\Hypertarget{testa__conta__palavras_8cpp_a048a6b7dd4e1d9d34f527163667b769a}\label{testa__conta__palavras_8cpp_a048a6b7dd4e1d9d34f527163667b769a}} 
+\index{testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}!TEST@{TEST}}
+\index{TEST@{TEST}!testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}}
+\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [9/12]}}
+{\footnotesize\ttfamily T\+E\+ST (\begin{DoxyParamCaption}\item[{Conta\+Palavras\+Test}]{,  }\item[{Palavras\+Com\+Hifen}]{ }\end{DoxyParamCaption})}
+
+
+
+Testa palavras compostas com hífen. 
+
+Este teste verifica se a função contar\+Palavras processa corretamente palavras compostas que contêm hífen, como \char`\"{}meia-\/noite\char`\"{} ou \char`\"{}bem-\/vindo\char`\"{}. \mbox{\Hypertarget{testa__conta__palavras_8cpp_ab1fff277b440f3b90b95c0ac12142699}\label{testa__conta__palavras_8cpp_ab1fff277b440f3b90b95c0ac12142699}} 
+\index{testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}!TEST@{TEST}}
+\index{TEST@{TEST}!testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}}
+\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [10/12]}}
+{\footnotesize\ttfamily T\+E\+ST (\begin{DoxyParamCaption}\item[{Conta\+Palavras\+Test}]{,  }\item[{Palavras\+Com\+Hifen\+E\+Pontuacao}]{ }\end{DoxyParamCaption})}
+
+
+
+Testa palavras compostas com hífen e pontuação. 
+
+Este teste verifica se as palavras compostas com hífen são corretamente reconhecidas e se a pontuação é removida adequadamente, sem afetar as palavras compostas. \mbox{\Hypertarget{testa__conta__palavras_8cpp_a6dc7e2502be0f81547136bc1b877f274}\label{testa__conta__palavras_8cpp_a6dc7e2502be0f81547136bc1b877f274}} 
+\index{testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}!TEST@{TEST}}
+\index{TEST@{TEST}!testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}}
+\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [11/12]}}
+{\footnotesize\ttfamily T\+E\+ST (\begin{DoxyParamCaption}\item[{Conta\+Palavras\+Test}]{,  }\item[{Palavras\+Com\+Pontos}]{ }\end{DoxyParamCaption})}
+
+
+
+Testa palavras com pontuação. 
+
+Este teste verifica se a função contar\+Palavras processa corretamente palavras com pontuação no final, como \char`\"{}com\char`\"{}, \char`\"{}pontuação!\char`\"{} e \char`\"{}isso?\char`\"{}. \mbox{\Hypertarget{testa__conta__palavras_8cpp_a8b7da0494217f5e7d09a467b80fd0516}\label{testa__conta__palavras_8cpp_a8b7da0494217f5e7d09a467b80fd0516}} 
+\index{testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}!TEST@{TEST}}
+\index{TEST@{TEST}!testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}}
+\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [12/12]}}
+{\footnotesize\ttfamily T\+E\+ST (\begin{DoxyParamCaption}\item[{Conta\+Palavras\+Test}]{,  }\item[{Pontuacao\+Com\+Hifen}]{ }\end{DoxyParamCaption})}
+
+
+
+Testa a remoção de pontuação ao redor de palavras compostas com hífen. 
+
+Este teste verifica se a pontuação ao redor de palavras compostas com hífen é corretamente removida, e se as palavras são contadas sem alterações indesejadas. 

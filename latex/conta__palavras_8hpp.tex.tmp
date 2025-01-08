@@ -42,5 +42,15 @@ A função {\ttfamily contar\+Palavras} recebe uma string contendo um texto e re
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Um mapa de palavras (chaves) e suas contagens (valores). 
+Um mapa de palavras (chaves) e suas contagens (valores).
+\end{DoxyReturn}
+Conta a ocorrência de palavras em um texto.
+
+
+\begin{DoxyParams}{Parameters}
+{\em texto} & O texto a ser processado. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Um mapa com as palavras e suas respectivas contagens. 
 \end{DoxyReturn}
