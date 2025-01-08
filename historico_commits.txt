@@ -1,0 +1,23 @@
+554e2ae documentação finalizada
+5b42a70 excluindo os coverage reports desnecessários
+a521701 coverage reports
+63e5f62 mais um teste
+deaff6b novo teste
+eca3182 teste rodando
+b1f70fa com pontos e extensa
+dd32508 extensas com pontos
+1738523 hifen entre palavras
+d19a82f teste com caracteres alfanuméricos
+fa83911 teste com hifen funcionando
+c71168e teste concertado
+50b7afe novo teste falhado
+e15c274 teste de contagem de palavras com numeros
+13e3b53 teste de contagem vazio
+d52c4b2 doxygen
+914ddcb documentação com doxygen
+451a070 valgrind e cppcheck funcionando
+9f64c32 gcov funcionando
+6fc9b9c compilação e testes funcionando
+0213a2e mudança C++ e começo de testes
+f3f41f7 teste de instalação do gtest
+7e9cd1c Início do projeto
