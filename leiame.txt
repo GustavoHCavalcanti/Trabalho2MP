@@ -1,0 +1,41 @@
+Instruções de Compilação e Execução
+Como compilar o projeto:
+Para compilar o projeto, use o seguinte comando no terminal:
+- make
+Isso irá compilar o código fonte, gerar o executável principal (testa_conta_palavras), executar os testes automatizados, gerar o relatório de cobertura de testes e criar a documentação.
+
+Como compilar o programa principal:
+Para compilar apenas o programa principal (testa_conta_palavras), use o seguinte comando:
+- make $(TARGET_MAIN)
+
+Como compilar os testes:
+Para compilar apenas o programa de testes, use:
+- make $(TARGET_TEST)
+
+Como rodar os testes automatizados:
+Para executar os testes automatizados com Google Test (gtest), use o comando:
+- make test
+Isso irá rodar o programa de teste e mostrar os resultados dos testes.
+
+Como gerar o relatório de cobertura de testes:
+Para gerar o relatório de cobertura de testes com gcov, use:
+- make coverage
+Isso irá compilar o código com as flags de cobertura, executar o programa e gerar os arquivos de cobertura no diretório coverage_reports.
+
+Como verificar a qualidade do código com cppcheck:
+Para verificar a qualidade do código com cppcheck, use o comando:
+- make cppcheck
+
+Como verificar vazamentos de memória com valgrind:
+Para verificar vazamentos de memória utilizando o valgrind, execute:
+- make valgrind
+
+Como limpar os arquivos gerados:
+Para limpar os arquivos de compilação, cobertura e outros arquivos temporários, use o comando:
+- make clean
+Esse comando irá remover todos os arquivos temporários gerados durante a compilação e os testes.
+
+Como gerar a documentação:
+Para gerar a documentação do projeto utilizando o Doxygen, execute o seguinte comando:
+- make doc
+Isso irá gerar a documentação no formato configurado no arquivo Doxyfile, criando os arquivos de documentação no diretório doxygen_docs.
