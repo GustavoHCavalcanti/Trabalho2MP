@@ -1,0 +1,57 @@
+\hypertarget{testa__conta__palavras_8cpp}{}\doxysection{testa\+\_\+conta\+\_\+palavras.\+cpp File Reference}
+\label{testa__conta__palavras_8cpp}\index{testa\_conta\_palavras.cpp@{testa\_conta\_palavras.cpp}}
+
+
+Testes unitários para a função contar\+Palavras.  
+
+
+{\ttfamily \#include $<$gtest/gtest.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}conta\+\_\+palavras.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$string$>$}\newline
+Include dependency graph for testa\+\_\+conta\+\_\+palavras.\+cpp\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{testa__conta__palavras_8cpp_acf46509a9db9de11000a05c9db144f52}\label{testa__conta__palavras_8cpp_acf46509a9db9de11000a05c9db144f52}} 
+{\bfseries T\+E\+ST} (Conta\+Palavras\+Test, Conta\+Palavras\+Simples)
+\item 
+\mbox{\Hypertarget{testa__conta__palavras_8cpp_a211f442e898bd78d6849b12adeb1dc57}\label{testa__conta__palavras_8cpp_a211f442e898bd78d6849b12adeb1dc57}} 
+{\bfseries T\+E\+ST} (Conta\+Palavras\+Test, Conta\+Palavras\+Com\+Pontuacao)
+\item 
+\mbox{\Hypertarget{testa__conta__palavras_8cpp_a0a6599cd9d3436156ee62a56f4aa4b4e}\label{testa__conta__palavras_8cpp_a0a6599cd9d3436156ee62a56f4aa4b4e}} 
+{\bfseries T\+E\+ST} (Conta\+Palavras\+Test, Conta\+Palavras\+Case\+Insensitive)
+\item 
+\mbox{\Hypertarget{testa__conta__palavras_8cpp_af71cd334cd7dddbb7574dcbc28775746}\label{testa__conta__palavras_8cpp_af71cd334cd7dddbb7574dcbc28775746}} 
+{\bfseries T\+E\+ST} (Conta\+Palavras\+Test, Conta\+Palavras\+Vazia)
+\item 
+\mbox{\Hypertarget{testa__conta__palavras_8cpp_aad314594518722c093f27cdfd11997e2}\label{testa__conta__palavras_8cpp_aad314594518722c093f27cdfd11997e2}} 
+{\bfseries T\+E\+ST} (Conta\+Palavras\+Test, Conta\+Palavras\+Com\+Numeros)
+\item 
+\mbox{\Hypertarget{testa__conta__palavras_8cpp_a353fa9fbef052cd9d60195d7e599067d}\label{testa__conta__palavras_8cpp_a353fa9fbef052cd9d60195d7e599067d}} 
+{\bfseries T\+E\+ST} (Conta\+Palavras\+Test, Conta\+Palavras\+Multipla\+Com\+Pontuacao)
+\item 
+\mbox{\Hypertarget{testa__conta__palavras_8cpp_a2bae0049c2c41c4121299ac7cef01b00}\label{testa__conta__palavras_8cpp_a2bae0049c2c41c4121299ac7cef01b00}} 
+{\bfseries T\+E\+ST} (Conta\+Palavras\+Test, Conta\+Palavras\+Com\+Hifen)
+\item 
+\mbox{\Hypertarget{testa__conta__palavras_8cpp_a38802a37058749e85628ab1e507faff0}\label{testa__conta__palavras_8cpp_a38802a37058749e85628ab1e507faff0}} 
+{\bfseries T\+E\+ST} (Conta\+Palavras\+Test, Conta\+Palavras\+Com\+Alfanumericos)
+\item 
+\mbox{\Hypertarget{testa__conta__palavras_8cpp_a048a6b7dd4e1d9d34f527163667b769a}\label{testa__conta__palavras_8cpp_a048a6b7dd4e1d9d34f527163667b769a}} 
+{\bfseries T\+E\+ST} (Conta\+Palavras\+Test, Palavras\+Com\+Hifen)
+\item 
+\mbox{\Hypertarget{testa__conta__palavras_8cpp_a6dc7e2502be0f81547136bc1b877f274}\label{testa__conta__palavras_8cpp_a6dc7e2502be0f81547136bc1b877f274}} 
+{\bfseries T\+E\+ST} (Conta\+Palavras\+Test, Palavras\+Com\+Pontos)
+\item 
+\mbox{\Hypertarget{testa__conta__palavras_8cpp_a8b7da0494217f5e7d09a467b80fd0516}\label{testa__conta__palavras_8cpp_a8b7da0494217f5e7d09a467b80fd0516}} 
+{\bfseries T\+E\+ST} (Conta\+Palavras\+Test, Pontuacao\+Com\+Hifen)
+\item 
+\mbox{\Hypertarget{testa__conta__palavras_8cpp_ab1fff277b440f3b90b95c0ac12142699}\label{testa__conta__palavras_8cpp_ab1fff277b440f3b90b95c0ac12142699}} 
+{\bfseries T\+E\+ST} (Conta\+Palavras\+Test, Palavras\+Com\+Hifen\+E\+Pontuacao)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Testes unitários para a função contar\+Palavras. 
+
+Este arquivo contém testes para a função {\ttfamily contar\+Palavras}, garantindo que ela lide corretamente com textos variados, pontuações, hífens e outros casos. 

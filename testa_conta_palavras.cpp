@@ -1,148 +1,180 @@
 // Copyright 2025 Gustavo
+#include <fstream>
 #include <gtest/gtest.h>
 #include "conta_palavras.hpp"
 #include <string>
 
 /**
- * @file testa_conta_palavras.cpp
+ * @brief Testa a contagem de palavras simples.
  * 
- * @brief Testes unitários para a função contarPalavras.
- * 
- * Este arquivo contém testes para a função `contarPalavras`, que conta a ocorrência
- * de cada palavra em um texto fornecido. A função deve lidar corretamente com texto
- * simples, pontuação e diferenças entre maiúsculas e minúsculas.
- */
-
-/**
- * @brief Teste de contagem de palavras simples.
- * 
- * Este teste verifica se a função `contarPalavras` consegue contar corretamente 
- * as palavras em um texto simples. A palavra "ola" deve ser contada 2 vezes e 
- * a palavra "mundo" deve ser contada 1 vez.
+ * Esse teste verifica se a função `contarPalavras` conta corretamente as palavras simples
+ * em um arquivo de texto sem pontuação.
  */
 TEST(ContaPalavrasTest, ContaPalavrasSimples) {
     std::string texto = "ola ola mundo";
-    auto resultado = contarPalavras(texto);
+    std::ofstream arquivo("teste.txt");
+    arquivo << texto; // Escreve a string no arquivo
+    arquivo.close();
 
-    // Verificar a contagem de palavras
+    auto resultado = contarPalavras("teste.txt"); // Lê do arquivo
+
     EXPECT_EQ(resultado["ola"], 2);
     EXPECT_EQ(resultado["mundo"], 1);
+
+    std::remove("teste.txt"); // Apaga o arquivo temporário após o teste
 }
 
 /**
- * @brief Teste de contagem de palavras com pontuação.
+ * @brief Testa a contagem de palavras com pontuação.
  * 
- * Este teste verifica se a função `contarPalavras` consegue contar as palavras 
- * corretamente, ignorando pontuação (como vírgulas, pontos de exclamação e pontos).
- * A palavra "ola" deve ser contada 2 vezes e a palavra "mundo" deve ser contada 1 vez.
+ * Esse teste verifica se a função `contarPalavras` ignora corretamente a pontuação 
+ * e conta as palavras adequadamente.
  */
 TEST(ContaPalavrasTest, ContaPalavrasComPontuacao) {
     std::string texto = "ola, ola! mundo.";
-    auto resultado = contarPalavras(texto);
+    std::ofstream arquivo("teste.txt");
+    arquivo << texto;
+    arquivo.close();
 
-    // Verificar a contagem de palavras (ignorando pontuação)
+    auto resultado = contarPalavras("teste.txt");
+
     EXPECT_EQ(resultado["ola"], 2);
     EXPECT_EQ(resultado["mundo"], 1);
+
+    std::remove("teste.txt");
 }
 
 /**
- * @brief Teste de contagem de palavras insensível a maiúsculas.
+ * @brief Testa a contagem de palavras com sensibilidade a maiúsculas e minúsculas.
  * 
- * Este teste verifica se a função `contarPalavras` não faz distinção entre 
- * maiúsculas e minúsculas. Ou seja, "Ola" e "ola" devem ser tratadas como a 
- * mesma palavra, e "Mundo" e "mundo" também devem ser contadas como uma só.
+ * Esse teste verifica se a função `contarPalavras` é insensível a maiúsculas e minúsculas.
  */
 TEST(ContaPalavrasTest, ContaPalavrasCaseInsensitive) {
     std::string texto = "Ola ola Mundo mundo";
-    auto resultado = contarPalavras(texto);
+    std::ofstream arquivo("teste.txt");
+    arquivo << texto;
+    arquivo.close();
 
-    // Verificar a contagem de palavras (ignorando diferenças de maiúsculas/minúsculas)
+    auto resultado = contarPalavras("teste.txt");
+
     EXPECT_EQ(resultado["ola"], 2);
     EXPECT_EQ(resultado["mundo"], 2);
+
+    std::remove("teste.txt");
 }
 
 /**
- * @brief Teste de contagem em texto vazio.
+ * @brief Testa a contagem de palavras em um texto vazio.
  * 
- * Este teste verifica se a função `contarPalavras` retorna um mapa vazio 
- * quando o texto de entrada é vazio.
+ * Esse teste verifica se a função `contarPalavras` retorna corretamente um mapa vazio 
+ * quando o arquivo de entrada não contém palavras.
  */
 TEST(ContaPalavrasTest, ContaPalavrasVazia) {
     std::string texto = "";
-    auto resultado = contarPalavras(texto);
+    std::ofstream arquivo("teste.txt");
+    arquivo << texto;
+    arquivo.close();
 
-    // Verificar que o mapa está vazio
+    auto resultado = contarPalavras("teste.txt");
+
     EXPECT_TRUE(resultado.empty());
+
+    std::remove("teste.txt");
 }
 
 /**
- * @brief Teste de contagem de palavras com números.
+ * @brief Testa a contagem de palavras com números.
  * 
- * Este teste verifica se a função `contarPalavras` lida corretamente com 
- * palavras que contêm números. A palavra "ano2025" deve ser contada 1 vez.
+ * Esse teste verifica se a função `contarPalavras` conta corretamente palavras que 
+ * contêm números.
  */
 TEST(ContaPalavrasTest, ContaPalavrasComNumeros) {
     std::string texto = "ano2025 ano2025";
-    auto resultado = contarPalavras(texto);
+    std::ofstream arquivo("teste.txt");
+    arquivo << texto;
+    arquivo.close();
 
-    // Verificar a contagem da palavra com números
+    auto resultado = contarPalavras("teste.txt");
+
     EXPECT_EQ(resultado["ano2025"], 2);
+
+    std::remove("teste.txt");
 }
 
 /**
- * @brief Teste de contagem de palavras com múltiplas ocorrências e pontuação.
+ * @brief Testa a contagem de palavras com pontuação e várias ocorrências.
  * 
- * Este teste verifica se a função `contarPalavras` consegue contar corretamente 
- * palavras com múltiplas ocorrências e pontuação misturada, como vírgulas e pontos.
- * A palavra "olá" deve ser contada 3 vezes e a palavra "mundo" deve ser contada 2 vezes.
+ * Esse teste verifica se a função `contarPalavras` lida corretamente com a pontuação 
+ * e contabiliza múltiplas ocorrências de palavras.
  */
 TEST(ContaPalavrasTest, ContaPalavrasMultiplaComPontuacao) {
     std::string texto = "ola, ola! mundo. mundo";
-    auto resultado = contarPalavras(texto);
+    std::ofstream arquivo("teste.txt");
+    arquivo << texto;
+    arquivo.close();
 
-    EXPECT_EQ(resultado["ola"], 2);  // "olá" aparece 2 vezes, removendo acentos e pontuação
-    EXPECT_EQ(resultado["mundo"], 2);  // "mundo" aparece 2 vezes
+    auto resultado = contarPalavras("teste.txt");
+
+    EXPECT_EQ(resultado["ola"], 2);
+    EXPECT_EQ(resultado["mundo"], 2);
+
+    std::remove("teste.txt");
 }
 
 /**
- * @brief Testa se a função lida corretamente com palavras contendo hífens.
+ * @brief Testa a contagem de palavras com hífen.
  * 
- * Este teste verifica se palavras compostas por hífens são tratadas como únicas,
- * sem serem divididas.
+ * Esse teste verifica se a função `contarPalavras` lida corretamente com palavras compostas 
+ * por hífen.
  */
 TEST(ContaPalavrasTest, ContaPalavrasComHifen) {
     std::string texto = "meia-noite meia-noite bom-dia";
-    auto resultado = contarPalavras(texto);
+    std::ofstream arquivo("teste.txt");
+    arquivo << texto;
+    arquivo.close();
 
-    // "meia-noite" deve aparecer 2 vezes e "bom-dia" deve aparecer 1 vez
+    auto resultado = contarPalavras("teste.txt");
+
     EXPECT_EQ(resultado["meia-noite"], 2);
     EXPECT_EQ(resultado["bom-dia"], 1);
+
+    std::remove("teste.txt");
 }
 
 /**
- * @brief Testa se a função lida corretamente com palavras alfanuméricas.
+ * @brief Testa a contagem de palavras com caracteres alfanuméricos.
  * 
- * Este teste verifica se palavras que contêm combinações de letras e números
- * são processadas adequadamente.
+ * Esse teste verifica se a função `contarPalavras` lida corretamente com palavras que 
+ * contêm caracteres alfanuméricos.
  */
 TEST(ContaPalavrasTest, ContaPalavrasComAlfanumericos) {
     std::string texto = "abc123 123abc abc123";
-    auto resultado = contarPalavras(texto);
+    std::ofstream arquivo("teste.txt");
+    arquivo << texto;
+    arquivo.close();
 
-    // "abc123" deve aparecer 2 vezes e "123abc" deve aparecer 1 vez
+    auto resultado = contarPalavras("teste.txt");
+
     EXPECT_EQ(resultado["abc123"], 2);
     EXPECT_EQ(resultado["123abc"], 1);
+
+    std::remove("teste.txt");
 }
 
 /**
- * @brief Testa palavras compostas com hífen.
+ * @brief Testa a contagem de palavras compostas por hífen.
  * 
- * Este teste verifica se a função contarPalavras processa corretamente palavras compostas
- * que contêm hífen, como "meia-noite" ou "bem-vindo".
+ * Esse teste verifica se a função `contarPalavras` lida corretamente com palavras compostas 
+ * por hífen, como "meia-noite" e "bem-vindo".
  */
 TEST(ContaPalavrasTest, PalavrasComHifen) {
     std::string texto = "meia-noite e um horario comum. bem-vindo ao ano 2025.";
-    auto resultado = contarPalavras(texto);
+    std::ofstream arquivo("teste.txt");
+    arquivo << texto;
+    arquivo.close();
+
+    auto resultado = contarPalavras("teste.txt");
+
     EXPECT_EQ(resultado["meia-noite"], 1);
     EXPECT_EQ(resultado["bem-vindo"], 1);
     EXPECT_EQ(resultado["um"], 1);
@@ -152,17 +184,24 @@ TEST(ContaPalavrasTest, PalavrasComHifen) {
     EXPECT_EQ(resultado["ao"], 1);
     EXPECT_EQ(resultado["ano"], 1);
     EXPECT_EQ(resultado["2025"], 1);
+
+    std::remove("teste.txt");
 }
 
 /**
- * @brief Testa palavras com pontuação.
+ * @brief Testa a contagem de palavras com pontuação.
  * 
- * Este teste verifica se a função contarPalavras processa corretamente palavras com
- * pontuação no final, como "com", "pontuação!" e "isso?".
+ * Esse teste verifica se a função `contarPalavras` lida corretamente com pontuação 
+ * e contabiliza corretamente as palavras.
  */
 TEST(ContaPalavrasTest, PalavrasComPontos) {
     std::string texto = "com Vinicius pontos! isso? mas. legal!! Vinicius Junior,,";
-    auto resultado = contarPalavras(texto);
+    std::ofstream arquivo("teste.txt");
+    arquivo << texto;
+    arquivo.close();
+
+    auto resultado = contarPalavras("teste.txt");
+
     EXPECT_EQ(resultado["com"], 1);
     EXPECT_EQ(resultado["pontos"], 1);
     EXPECT_EQ(resultado["isso"], 1);
@@ -170,39 +209,54 @@ TEST(ContaPalavrasTest, PalavrasComPontos) {
     EXPECT_EQ(resultado["legal"], 1);
     EXPECT_EQ(resultado["vinicius"], 2);
     EXPECT_EQ(resultado["junior"], 1);
+
+    std::remove("teste.txt");
 }
 
 /**
- * @brief Testa a remoção de pontuação ao redor de palavras compostas com hífen.
+ * @brief Testa a contagem de palavras com hífen e pontuação.
  * 
- * Este teste verifica se a pontuação ao redor de palavras compostas com hífen é
- * corretamente removida, e se as palavras são contadas sem alterações indesejadas.
+ * Esse teste verifica se a função `contarPalavras` lida corretamente com palavras compostas 
+ * por hífen e com pontuação associada.
  */
 TEST(ContaPalavrasTest, PontuacaoComHifen) {
     std::string texto = "ola, boa-tarde! como-vai voce?";
-    auto resultado = contarPalavras(texto);
-    
-    EXPECT_EQ(resultado["ola"], 1);          // Palavra simples
-    EXPECT_EQ(resultado["boa-tarde"], 1);    // Palavra composta com hífen
-    EXPECT_EQ(resultado["como-vai"], 1);     // Palavra composta com hífen
-    EXPECT_EQ(resultado["voce"], 1);         // Palavra simples
+    std::ofstream arquivo("teste.txt");
+    arquivo << texto;
+    arquivo.close();
+
+    auto resultado = contarPalavras("teste.txt");
+
+    EXPECT_EQ(resultado["ola"], 1);
+    EXPECT_EQ(resultado["boa-tarde"], 1);
+    EXPECT_EQ(resultado["como-vai"], 1);
+    EXPECT_EQ(resultado["voce"], 1);
+
+    std::remove("teste.txt");
 }
 
 /**
- * @brief Testa palavras compostas com hífen e pontuação.
+ * @brief Testa a contagem de palavras compostas por hífen e pontuação.
  * 
- * Este teste verifica se as palavras compostas com hífen são corretamente reconhecidas
- * e se a pontuação é removida adequadamente, sem afetar as palavras compostas.
+ * Esse teste verifica se a função `contarPalavras` lida corretamente com palavras compostas 
+ * por hífen e com pontuação, como "meia-noite" e "bem-vindo".
  */
 TEST(ContaPalavrasTest, PalavrasComHifenEPontuacao) {
     std::string texto = "meia-noite, bem-vindo ao mundo!";
-    auto resultado = contarPalavras(texto);
-    
-    EXPECT_EQ(resultado["meia-noite"], 1);  // Palavra composta com hífen
-    EXPECT_EQ(resultado["bem-vindo"], 1);   // Palavra composta com hífen
-    EXPECT_EQ(resultado["ao"], 1);          // Palavra simples
-    EXPECT_EQ(resultado["mundo"], 1);       // Palavra simples
+    std::ofstream arquivo("teste.txt");
+    arquivo << texto;
+    arquivo.close();
+
+    auto resultado = contarPalavras("teste.txt");
+
+    EXPECT_EQ(resultado["meia-noite"], 1);
+    EXPECT_EQ(resultado["bem-vindo"], 1);
+    EXPECT_EQ(resultado["ao"], 1);
+    EXPECT_EQ(resultado["mundo"], 1);
+
+    std::remove("teste.txt");
 }
+
 
 
 
